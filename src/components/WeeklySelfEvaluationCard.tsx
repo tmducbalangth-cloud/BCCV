@@ -10,9 +10,9 @@ import {
   Users,
   Radio,
   Heart,
-  Edit3,
+  Edit, // Đã sửa từ Edit3 để chống crash
   Save,
-  CheckCircle2,
+  CheckCircle, // Đã sửa từ CheckCircle2 để chống crash
   FileText,
   Lightbulb,
   AlertTriangle,
@@ -139,7 +139,6 @@ export const DEFAULT_CHANNEL_METRICS_MAP: Record<string, SingleChannelMetricsDat
   },
 };
 
-// Mẫu dữ liệu mặc định thông minh cho các tuần của Tháng 8 năm 2026 (Chỉ tính phát sinh thuần trong 7 ngày)
 const DEFAULT_AUGUST_REVIEWS: Record<number, Partial<WeeklySelfReview>> = {
   32: {
     channelMetrics: {
@@ -151,11 +150,7 @@ const DEFAULT_AUGUST_REVIEWS: Record<number, Partial<WeeklySelfReview>> = {
       activeChannels: ['TikTok Ba Làng Tuyến Hòa', 'Fan Ba Làng TH'],
       note: 'Tuần mở đầu tháng 8 tập trung quy chuẩn sản xuất và chuẩn bị chiến dịch',
     },
-    userBulletPoints: `• Quay hoàn tất 12 video content định kỳ (4 clip Ba Làng Tuyến Hòa, 8 clip Fan Ba Làng).
-• Soạn thảo hoàn thành 8 kịch bản kênh Fan Ba Làng TH.
-• Lên kế hoạch content và chuẩn bị chiến dịch quảng cáo Facebook tuần tới.
-• Sản xuất và dựng hoàn thiện 4 video phục vụ phiên livestream ngày 8/8.
-• Tồn đọng: Tốc độ duyệt kịch bản giữa các khâu cần nhịp nhàng hơn.`,
+    userBulletPoints: `• Quay hoàn tất 12 video content định kỳ (4 clip Ba Làng Tuyến Hòa, 8 clip Fan Ba Làng).\n• Soạn thảo hoàn thành 8 kịch bản kênh Fan Ba Làng TH.\n• Lên kế hoạch content và chuẩn bị chiến dịch quảng cáo Facebook tuần tới.\n• Sản xuất và dựng hoàn thiện 4 video phục vụ phiên livestream ngày 8/8.\n• Tồn đọng: Tốc độ duyệt kịch bản giữa các khâu cần nhịp nhàng hơn.`,
     selfScore: 92,
     selfRating: 'Xuất sắc (A)',
   },
@@ -169,11 +164,7 @@ const DEFAULT_AUGUST_REVIEWS: Record<number, Partial<WeeklySelfReview>> = {
       activeChannels: ['TikTok Ba Làng Tuyến Hòa', 'Fan Ba Làng TH', 'TikTok Sếp Huyền'],
       note: 'Đột phá tuyến nội dung nỗi đau khách hàng và kênh TT Sếp Huyền',
     },
-    userBulletPoints: `• Đột phá sản xuất 10 kịch bản (kênh TT sếp Huyền, Seri nỗi đau KH).
-• Quay 12 clip content Ba Làng Tuyến Hòa và Fan Ba Làng.
-• Dựng hoàn thiện 9 video clip mới và tái dựng 2 clip cũ tối ưu giữ chân người xem.
-• Ban hành bộ tài liệu Đề Xuất Quy Tắc TikTok và đánh giá kênh TikTok cũ.
-• Kế hoạch tuần tới: Tập trung kịch bản kênh TT Đại diện Sếp Huyền và Fan Ba Làng.`,
+    userBulletPoints: `• Đột phá sản xuất 10 kịch bản (kênh TT sếp Huyền, Seri nỗi đau KH).\n• Quay 12 clip content Ba Làng Tuyến Hòa và Fan Ba Làng.\n• Dựng hoàn thiện 9 video clip mới và tái dựng 2 clip cũ tối ưu giữ chân người xem.\n• Ban hành bộ tài liệu Đề Xuất Quy Tắc TikTok và đánh giá kênh TikTok cũ.\n• Kế hoạch tuần tới: Tập trung kịch bản kênh TT Đại diện Sếp Huyền và Fan Ba Làng.`,
     selfScore: 96,
     selfRating: 'Xuất sắc (A+)',
   },
@@ -187,11 +178,7 @@ const DEFAULT_AUGUST_REVIEWS: Record<number, Partial<WeeklySelfReview>> = {
       activeChannels: ['TikTok Ba Làng Tuyến Hòa', 'Fan Ba Làng TH'],
       note: 'Khối lượng sản xuất cao nhất tháng: 19 clip quay, 16 clip dựng',
     },
-    userBulletPoints: `• Sản xuất khối lượng lớn: 19 clip quay (8 Ba Làng Tuyến Hòa, 11 Fan Ba Làng).
-• Dựng và hoàn thiện 16 video clip cho 2 kênh chính.
-• Họp giao ban đầu tuần, thống nhất kế hoạch xây kênh theo tuyến nỗi đau khách hàng.
-• Lập đề xuất lắp đặt đường truyền cáp quang riêng và khảo sát thiết bị OBS cho phòng Live.
-• Tự nhận xét: Hiệu suất cao, chỉ số view và follow tăng trưởng đột biến, tinh thần làm việc bền bỉ.`,
+    userBulletPoints: `• Sản xuất khối lượng lớn: 19 clip quay (8 Ba Làng Tuyến Hòa, 11 Fan Ba Làng).\n• Dựng và hoàn thiện 16 video clip cho 2 kênh chính.\n• Họp giao ban đầu tuần, thống nhất kế hoạch xây kênh theo tuyến nỗi đau khách hàng.\n• Lập đề xuất lắp đặt đường truyền cáp quang riêng và khảo sát thiết bị OBS cho phòng Live.\n• Tự nhận xét: Hiệu suất cao, chỉ số view và follow tăng trưởng đột biến, tinh thần làm việc bền bỉ.`,
     selfScore: 95,
     selfRating: 'Xuất sắc (A+)',
   },
@@ -205,10 +192,7 @@ const DEFAULT_AUGUST_REVIEWS: Record<number, Partial<WeeklySelfReview>> = {
       activeChannels: ['TikTok Ba Làng Tuyến Hòa', 'Fan Ba Làng TH', 'Phiên Livestream'],
       note: 'Tăng tốc kịch bản chiến dịch lễ Quốc khánh 2/9 và Mega Live 9/9',
     },
-    userBulletPoints: `• Kỷ lục hoàn thành 13 kịch bản kênh Ba Làng Tuyến Hòa và 2 kịch bản chào mừng 2/9.
-• Sản xuất và dựng 14 video phục vụ chiến dịch lễ và tuần bán hàng cao điểm.
-• Xây dựng dàn ý chi tiết phiên Livestream 9/9 và kết hợp tối ưu chi phí Ads.
-• Tự nhận xét: Vượt chỉ tiêu kịch bản tuần, chuẩn bị kỹ lưỡng cho chuỗi sự kiện tháng 9.`,
+    userBulletPoints: `• Kỷ lục hoàn thành 13 kịch bản kênh Ba Làng Tuyến Hòa và 2 kịch bản chào mừng 2/9.\n• Sản xuất và dựng 14 video phục vụ chiến dịch lễ và tuần bán hàng cao điểm.\n• Xây dựng dàn ý chi tiết phiên Livestream 9/9 và kết hợp tối ưu chi phí Ads.\n• Tự nhận xét: Vượt chỉ tiêu kịch bản tuần, chuẩn bị kỹ lưỡng cho chuỗi sự kiện tháng 9.`,
     selfScore: 98,
     selfRating: 'Xuất sắc (A+)',
   },
@@ -222,16 +206,12 @@ const DEFAULT_AUGUST_REVIEWS: Record<number, Partial<WeeklySelfReview>> = {
       activeChannels: ['TikTok Ba Làng Tuyến Hòa', 'Fan Ba Làng TH'],
       note: 'Tuần trọng tâm chuyển giao đầu tháng 9, duy trì nhịp quay dựng và phối hợp Livestream',
     },
-    userBulletPoints: `• Hoàn thành bám sát các đầu việc kịch bản, quay và dựng trong tuần cho cả 2 kênh TikTok.
-• Tương tác kênh duy trì ổn định, áp dụng kỹ thuật Hook thị giác và nhịp cắt dồn dập giúp cải thiện tỷ lệ giữ chân người xem.
-• Phối hợp chặt chẽ cùng phòng Livestream chuẩn bị kịch bản và hỗ trợ các buổi phát sóng bán hàng.
-• Tự nhận xét: Tinh thần làm việc trách nhiệm cao, năng suất ổn định, hoàn thành tốt nhiệm vụ được giao.`,
+    userBulletPoints: `• Hoàn thành bám sát các đầu việc kịch bản, quay và dựng trong tuần cho cả 2 kênh TikTok.\n• Tương tác kênh duy trì ổn định, áp dụng kỹ thuật Hook thị giác và nhịp cắt dồn dập giúp cải thiện tỷ lệ giữ chân người xem.\n• Phối hợp chặt chẽ cùng phòng Livestream chuẩn bị kịch bản và hỗ trợ các buổi phát sóng bán hàng.\n• Tự nhận xét: Tinh thần làm việc trách nhiệm cao, năng suất ổn định, hoàn thành tốt nhiệm vụ được giao.`,
     selfScore: 90,
     selfRating: 'Xuất sắc (A)',
   },
 };
 
-// Helper tạo bản nhận xét & đề xuất thuần cho Người Xem (HOÀN TOÀN KHÔNG CÓ PHẦN PHÂN TÍCH KÊNH)
 export const generateViewerSelfReviewDoc = ({
   weekNum,
   startDate,
@@ -277,7 +257,6 @@ IV. ĐỀ XUẤT & CAM KẾT HÀNH ĐỘNG TUẦN TIẾP THEO CỦA BẢN THÂN:
 -> Phối hợp vận hành hạ tầng phòng Live và chuẩn bị kịch bản chương trình khuyến mãi.`;
 };
 
-// Hàm trích xuất văn bản dành riêng cho Người xem: Tự động loại bỏ Mục Phân tích kênh
 export const getViewerSelfReviewDoc = (
   rawDoc: string | undefined,
   fallbackProps: {
@@ -311,7 +290,6 @@ export const getViewerSelfReviewDoc = (
   });
 };
 
-// Khởi tạo bản đánh giá mặc định đầy đủ cho mọi tuần, đảm bảo không bao giờ bị trắng màn hình
 export const getInitialReviewData = (
   weekNum: number,
   startDate: string,
@@ -362,6 +340,145 @@ export const getInitialReviewData = (
   };
 };
 
+const generateSingleChannelReportDoc = (
+  channelName: string,
+  scanData: any,
+  metricsData: ChannelMetrics,
+  rating: string,
+  score: number,
+  weekNum: number,
+  start: string,
+  end: string
+): string => {
+  const isFanChannel = channelName.includes('Fan');
+  const views = scanData.totalViews || metricsData.views || (isFanChannel ? '19,800' : '38,500');
+  const likes = scanData.totalLikes || (isFanChannel ? '1,380' : '2,860');
+  const followers = scanData.totalFollowersGained || metricsData.followers || (isFanChannel ? '+140' : '+280');
+  const engagement = scanData.totalEngagement || metricsData.engagement || (isFanChannel ? '1,680' : '3,450');
+  const url = scanData.channelUrl || (isFanChannel ? 'https://www.tiktok.com/@fanbalangth' : 'https://www.tiktok.com/@balangtuyenhoa');
+
+  const hookTip = getHookTips(scanData.strategicReview)[0] || 'Tối ưu 1.5s đầu hình ảnh nước mắm sóng sánh hoặc biểu cảm bất ngờ';
+  const topicTip = getRecommendedTopics(scanData.strategicReview)[0] || 'Đẩy mạnh chuỗi series Bếp Mẹ Nấu & Giải đáp minh bạch thắc mắc khách hàng';
+  const facialTip = getFacialTips(scanData.strategicReview)[0] || 'Nhìn thẳng tâm ống kính camera 1:1, nụ cười mở đầu tự tin và rạng rỡ';
+  const editTip = getEditingTips(scanData.strategicReview)[0] || 'Nhịp cắt dồn dập dưới 1.5s/shot, zoom luân phiên 10-15%, âm thanh ASMR rót mắm';
+
+  const clipsList = scanData.clips && scanData.clips.length > 0
+    ? scanData.clips.slice(0, 4).map((c: any, i: number) =>
+        `  ${i + 1}. [Clip] ${c.title || 'Video Content Tuần'}\n     ↳ Views: ${c.views} | Tim: ${c.likes || c.likesCount || '---'} | Đánh giá: ${c.overallVerdict || 'Giữ chân người xem tốt'}`
+      ).join('\n')
+    : '  • Các video content định kỳ phát hành đúng tiến độ tuần, duy trì nhịp tương tác ổn định.';
+
+  return `BÁO CÁO TỰ ĐÁNH GIÁ CÔNG VIỆC TRONG TUẦN ${weekNum} (${start} - ${end})
+Người thực hiện: Trịnh Minh Đức | Kênh phụ trách: ${channelName}
+Xếp loại tự chấm: ${rating} (${score}/100)
+
+I. TỔNG QUAN TỰ ĐÁNH GIÁ:
+Trong tuần ${weekNum}, bản thân tôi đã tập trung cao độ triển khai toàn diện các hạng mục công việc được giao, bám sát mục tiêu nội dung và vận hành kênh ${channelName}. Tinh thần làm việc chủ động, trách nhiệm cao, bám sát các đầu việc từ lên ý tưởng, viết kịch bản đến quay và dựng hoàn thiện các video clip.
+
+II. BÁO CÁO & ĐO LƯỜNG CHỈ SỐ KÊNH (TĂNG TRƯỞNG TRONG TUẦN): ${channelName.toUpperCase()}
+- Kênh phụ trách: ${channelName}
+- Link kênh: ${url}
+- Tổng lượt xem phát sinh trong tuần (Views): ${views}
+- Tổng lượt Tim (Likes): ${likes}
+- Lượt Follow mới tăng trong tuần: ${followers}
+- Lượt tương tác (Engagement): ${engagement}
+- Độ phủ & Chuyển đổi: Tăng trưởng đều đặn, tỷ lệ giữ chân người xem cải thiện rõ nét nhờ áp dụng các hook mở màn mới.
+
+* BÓC TÁCH CHIẾN LƯỢC KÊNH ${channelName.toUpperCase()}:
+• Chiến lược Hook 3 giây đầu: ${hookTip}
+• Tuyến nội dung trọng tâm: ${topicTip}
+• Biểu cảm & Diễn xuất: ${facialTip}
+• Kỹ thuật Edit & Dựng video: ${editTip}
+
+* CÁC CLIP TIÊU BIỂU PHÁT HÀNH TRONG TUẦN:
+${clipsList}
+
+III. NHỮNG ĐIỂM SÁNG & ĐỘT PHÁ ĐẠT ĐƯỢC:
++ Hoàn thành xuất sắc tiến độ sản xuất nội dung, đảm bảo lịch đăng tải định kỳ trên kênh ${channelName}.
++ Đạt chỉ số tương tác tích cực với ${views} lượt xem và ${followers} follow mới trong tuần.
++ Áp dụng thành công các hook hình ảnh và kỹ thuật dựng dồn dập giúp giữ chân người xem lâu hơn.
+
+IV. KHUYẾT ĐIỂM CẦN KHẮC PHỤC:
+- Cần rút ngắn thời gian phản hồi duyệt kịch bản giữa các khâu để chủ động lịch quay ngoại cảnh.
+- Tiếp tục tối ưu 2 giây đầu video để kéo giảm tỷ lệ lướt qua dưới 25%.
+
+V. CAM KẾT HÀNH ĐỘNG TUẦN TIẾP THEO:
+-> Tiếp tục tối ưu kịch bản theo tuyến nội dung giữ chân cao nhất trên ${channelName}.
+-> Đẩy mạnh video ngắn kết hợp kêu gọi hành động (CTA) hướng tới các phiên Livestream bán hàng.
+-> Chủ động nâng cấp chất lượng âm thanh thu âm ngoài trời và ánh sáng bối cảnh.`;
+};
+
+const generateSynthesizedChannelsReportDoc = (
+  c1Scan: any,
+  c2Scan: any,
+  metricsData: ChannelMetrics,
+  rating: string,
+  score: number,
+  weekNum: number,
+  start: string,
+  end: string
+): string => {
+  const c1Name = c1Scan.channelName || 'TikTok Ba Làng Tuyến Hòa';
+  const c2Name = c2Scan.channelName || 'Fan Ba Làng TH';
+
+  const parseNum = (val?: string) => {
+    if (!val) return 0;
+    return parseInt(String(val).replace(/[^\d]/g, ''), 10) || 0;
+  };
+
+  const c1Likes = c1Scan.totalLikes || '2,860';
+  const c2Likes = c2Scan.totalLikes || '1,380';
+  const totalLikesCalculated = (parseNum(c1Likes) + parseNum(c2Likes)).toLocaleString();
+
+  const totalViews = metricsData.views || '58,300';
+  const totalFollowers = metricsData.followers || '+420';
+  const totalEngagement = metricsData.engagement || '5,130';
+
+  const c1Views = c1Scan.totalViews || '38,500';
+  const c2Views = c2Scan.totalViews || '19,800';
+
+  return `BÁO CÁO TỰ ĐÁNH GIÁ CÔNG VIỆC TRONG TUẦN ${weekNum} (${start} - ${end})
+Người thực hiện: Trịnh Minh Đức | Kênh phụ trách: ${c1Name} & ${c2Name}
+Xếp loại tự chấm: ${rating} (${score}/100)
+
+I. TỔNG QUAN TỰ ĐÁNH GIÁ:
+Trong tuần ${weekNum}, bản thân tôi đã vận hành song song và phát triển nội dung cho cả 2 kênh TikTok trọng điểm của Ba Làng TH (${c1Name} và ${c2Name}). Toàn bộ khối lượng kịch bản, lịch quay và dựng hậu kỳ đều được hoàn thành đúng hạn với tinh thần trách nhiệm và cam kết chất lượng cao nhất.
+
+II. BÁO CÁO & PHÂN TÍCH TỔNG HỢP TĂNG TRƯỞNG TRONG TUẦN CẢ 2 KÊNH TIKTOK:
+1. TỔNG SỐ LIỆU TĂNG TRƯỞNG HỢP NHẤT TRONG TUẦN (7 NGÀY):
+- Tổng lượt xem (Views): ${totalViews}
+- Tổng lượt Tim (Likes): ${totalLikesCalculated} tim
+- Tổng Follow mới tăng trong tuần: ${totalFollowers}
+- Tổng tương tác: ${totalEngagement}
+
+2. CHI TIẾT TĂNG TRƯỞNG TỪNG KÊNH TRONG TUẦN:
+• KÊNH 1: ${c1Name.toUpperCase()}
+  - Lượt xem: ${c1Views} | Lượt Tim: ${c1Likes} | Link: ${c1Scan.channelUrl || 'https://www.tiktok.com/@balangtuyenhoa'}
+  - Trọng tâm nội dung: Ẩm thực gia đình "Bếp Mẹ Nấu", câu chuyện làng nghề mắm cá cơm truyền thống.
+  - Hook 3s: Visual Hook miếng thịt luộc bốc khói dầm mắm tỏi ớt đỏ au đạt tỷ lệ giữ chân người xem tốt nhất tuần.
+  - Kỹ thuật Edit: Nhịp cắt nhanh dưới 1.5s/shot, đẩy âm lượng ASMR rót mắm lên 120%.
+
+• KÊNH 2: ${c2Name.toUpperCase()}
+  - Lượt xem: ${c2Views} | Lượt Tim: ${c2Likes} | Link: ${c2Scan.channelUrl || 'https://www.tiktok.com/@fanbalangth'}
+  - Trọng tâm nội dung: Phỏng vấn đường phố (Street Interview) và quy trình đóng gói kiện hàng uy tín.
+  - Hook 3s: Đặt câu hỏi phỏng vấn giật tò mò ngay từ giây đầu tiên, reaction tươi tắn thân thiện.
+  - Kỹ thuật Edit: Highlight từ khóa địa danh Ba Làng màu vàng nổi bật, lọc gió âm thanh ngoài trời.
+
+III. NHỮNG ĐIỂM SÁNG & ĐỘT PHÁ ĐẠT ĐƯỢC:
++ Đảm bảo đồng thời năng suất và chất lượng cho cả 2 kênh, đạt mốc ấn tượng ${totalViews} lượt xem toàn tuần.
++ Phân hóa rõ nét phong cách nội dung giữa 2 kênh: một kênh đậm chất ẩm thực gia đình, một kênh chứng thực xã hội (Social Proof).
++ Tối ưu tỷ lệ chuyển đổi, kích thích hàng trăm bình luận hỏi mua và đặt hàng mắm Ba Làng.
+
+IV. KHUYẾT ĐIỂM CẦN KHẮC PHỤC:
+- Cần tối ưu thời gian phối hợp duyệt kịch bản giữa các bộ phận để không bị dồn lịch quay cuối tuần.
+- Bổ sung mic lọc gió chuyên dụng (deadcat) khi quay phỏng vấn ngoài bờ biển Tĩnh Gia.
+
+V. CAM KẾT HÀNH ĐỘNG TUẦN TIẾP THEO:
+-> Tiếp tục phát huy các tuyến video ngắn kết hợp kêu gọi hành động (CTA) đẩy traffic vào phiên Livestream bán hàng.
+-> Lên kịch bản chi tiết theo phong cách diễn xuất mới của sếp và đội ngũ.
+-> Phối hợp vận hành hạ tầng phòng Live và chuẩn bị kịch bản chương trình khuyến mãi.`;
+};
+
 export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> = ({
   weekNumber,
   year,
@@ -373,7 +490,6 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
   const weekKey = `weekly_${weekNumber}_${year}`;
   const localKey = `weekly_self_review_${weekKey}`;
 
-  // Default fallback data for this week
   const defaultData = DEFAULT_AUGUST_REVIEWS[weekNumber] || {
     channelMetrics: {
       views: '150,000',
@@ -384,9 +500,7 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
       activeChannels: ['TikTok Ba Làng Tuyến Hòa', 'Fan Ba Làng TH'],
       note: '',
     },
-    userBulletPoints: `• Hoàn thành bám sát các đầu việc kịch bản, quay và dựng trong tuần.
-• Tương tác kênh duy trì ổn định và có sự cải thiện về chất lượng giữ chân người xem.
-• Phối hợp hỗ trợ các bộ phận liên quan chuẩn bị lịch phát sóng và livestream.`,
+    userBulletPoints: `• Hoàn thành bám sát các đầu việc kịch bản, quay và dựng trong tuần.\n• Tương tác kênh duy trì ổn định và có sự cải thiện về chất lượng giữ chân người xem.\n• Phối hợp hỗ trợ các bộ phận liên quan chuẩn bị lịch phát sóng và livestream.`,
     selfScore: 90,
     selfRating: 'Xuất sắc (A)',
   };
@@ -400,7 +514,6 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
           const m = parsed.channelMetrics;
           const fNum = parseInt(String(m.followers || '').replace(/[^\d]/g, ''), 10) || 0;
           if (fNum > 800) {
-            // Dữ liệu cũ bị sai lệch (lũy kế >800 thay vì số phát sinh tuần), tự động lấy số tuần chuẩn
             return defaultData.channelMetrics as ChannelMetrics;
           }
           return m;
@@ -454,7 +567,6 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
   const [customNewChannel, setCustomNewChannel] = useState('');
   const [isAddingChannel, setIsAddingChannel] = useState(false);
 
-  // TikTok Channel & Clip Analysis State
   const getChannelDefaultUrl = (channelName: string) => {
     if (channelName.toLowerCase().includes('tuyến hòa')) return 'https://www.tiktok.com/@balangtuyenhoa';
     if (channelName.toLowerCase().includes('fan')) return 'https://www.tiktok.com/@fanbalangth';
@@ -481,10 +593,8 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
     return 'https://www.tiktok.com/@balangtuyenhoa';
   });
 
-  // Role Access Control: Admin only for channel analysis and raw clip scanning
   const isAdmin = currentUser?.role === 'admin' || currentUser?.email === 'tmduc.balangth@gmail.com' || currentUser?.username === 'admin';
 
-  // Persistent registry of scanned channels for multi-channel aggregation
   const [channelScans, setChannelScans] = useState<Record<string, ScannedChannelRecord>>(() => {
     try {
       const saved = localStorage.getItem(`weekly_channel_scans_${weekKey}`);
@@ -492,7 +602,6 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
         const parsed = JSON.parse(saved);
         const fNum = parseInt(String(parsed['TikTok Ba Làng Tuyến Hòa']?.totalFollowersGained || '').replace(/[^\d]/g, ''), 10) || 0;
         if (fNum > 800) {
-          // Reset về benchmark tuần chuẩn
           return {
             'TikTok Ba Làng Tuyến Hòa': BENCHMARK_BALANG_TUYENHOA,
             'Fan Ba Làng TH': BENCHMARK_FAN_BALANG,
@@ -507,7 +616,6 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
     };
   });
 
-  // Independent metrics for each channel + consolidated total
   const [activeMetricsChannel, setActiveMetricsChannel] = useState<string>('TikTok Ba Làng Tuyến Hòa');
   const [channelMetricsMap, setChannelMetricsMap] = useState<Record<string, SingleChannelMetricsData>>(() => {
     try {
@@ -516,7 +624,6 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
         const parsed = JSON.parse(saved);
         const fNum = parseInt(String(parsed['TikTok Ba Làng Tuyến Hòa']?.followers || '').replace(/[^\d]/g, ''), 10) || 0;
         if (fNum > 800) {
-          // Dữ liệu cũ bị sai lệch (lũy kế >800 thay vì phát sinh tuần), dùng DEFAULT_CHANNEL_METRICS_MAP chuẩn
           return DEFAULT_CHANNEL_METRICS_MAP;
         }
         return parsed;
@@ -584,7 +691,6 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
   const [activeTab, setActiveTab] = useState<'document' | 'breakdown' | 'tiktok'>('document');
   const [isEditingDoc, setIsEditingDoc] = useState(false);
 
-  // States for Publishing to Viewers
   const [isPublishedForViewers, setIsPublishedForViewers] = useState<boolean>(() => {
     try {
       const saved = localStorage.getItem(localKey);
@@ -608,7 +714,6 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
   const [isViewerModalOpen, setIsViewerModalOpen] = useState<boolean>(false);
   const [publishSuccessNotice, setPublishSuccessNotice] = useState<string | null>(null);
 
-  // Safety fallback for viewers: redirect away from tiktok tab if not admin
   useEffect(() => {
     if (!isAdmin && activeTab === 'tiktok') {
       setActiveTab('document');
@@ -647,9 +752,7 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
         activeChannels: ['TikTok Ba Làng Tuyến Hòa', 'Fan Ba Làng TH'],
         note: '',
       },
-      userBulletPoints: `• Hoàn thành bám sát các đầu việc kịch bản, quay và dựng trong tuần cho cả 2 kênh TikTok.
-• Tương tác kênh duy trì ổn định và có sự cải thiện về chất lượng giữ chân người xem.
-• Phối hợp hỗ trợ các bộ phận liên quan chuẩn bị lịch phát sóng và livestream.`,
+      userBulletPoints: `• Hoàn thành bám sát các đầu việc kịch bản, quay và dựng trong tuần cho cả 2 kênh TikTok.\n• Tương tác kênh duy trì ổn định và có sự cải thiện về chất lượng giữ chân người xem.\n• Phối hợp hỗ trợ các bộ phận liên quan chuẩn bị lịch phát sóng và livestream.`,
       selfScore: 90,
       selfRating: 'Xuất sắc (A)',
     };
@@ -674,9 +777,7 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
         activeChannels: ['TikTok Ba Làng Tuyến Hòa', 'Fan Ba Làng TH'],
         note: '',
       },
-      userBulletPoints: `• Hoàn thành bám sát các đầu việc kịch bản, quay và dựng trong tuần cho cả 2 kênh TikTok.
-• Tương tác kênh duy trì ổn định và có sự cải thiện về chất lượng giữ chân người xem.
-• Phối hợp hỗ trợ các bộ phận liên quan chuẩn bị lịch phát sóng và livestream.`,
+      userBulletPoints: `• Hoàn thành bám sát các đầu việc kịch bản, quay và dựng trong tuần cho cả 2 kênh TikTok.\n• Tương tác kênh duy trì ổn định và có sự cải thiện về chất lượng giữ chân người xem.\n• Phối hợp hỗ trợ các bộ phận liên quan chuẩn bị lịch phát sóng và livestream.`,
       selfScore: 90,
       selfRating: 'Xuất sắc (A)',
     };
@@ -684,7 +785,6 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
     return init.formattedDocument || '';
   });
 
-  // Bản Nhận Xét & Đề Xuất Tuần Của Bản Thân dành riêng cho Người xem (loại bỏ hoàn toàn phần phân tích kênh)
   const currentViewerDoc = useMemo(() => {
     return getViewerSelfReviewDoc(editableDoc || aiReviewData?.formattedDocument, {
       weekNumber,
@@ -696,7 +796,6 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
     });
   }, [editableDoc, aiReviewData, weekNumber, startDate, endDate, selfRating, selfScore, metrics.activeChannels]);
 
-  // Reload when week changes
   useEffect(() => {
     try {
       const savedMap = localStorage.getItem(`weekly_channel_metrics_map_${weekKey}`);
@@ -741,9 +840,7 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
               activeChannels: ['TikTok Ba Làng Tuyến Hòa', 'Fan Ba Làng TH'],
               note: '',
             },
-            userBulletPoints: `• Hoàn thành bám sát các đầu việc kịch bản, quay và dựng trong tuần cho cả 2 kênh TikTok.
-• Tương tác kênh duy trì ổn định và có sự cải thiện về chất lượng giữ chân người xem.
-• Phối hợp hỗ trợ các bộ phận liên quan chuẩn bị lịch phát sóng và livestream.`,
+            userBulletPoints: `• Hoàn thành bám sát các đầu việc kịch bản, quay và dựng trong tuần cho cả 2 kênh TikTok.\n• Tương tác kênh duy trì ổn định và có sự cải thiện về chất lượng giữ chân người xem.\n• Phối hợp hỗ trợ các bộ phận liên quan chuẩn bị lịch phát sóng và livestream.`,
             selfScore: 90,
             selfRating: 'Xuất sắc (A)',
           };
@@ -757,7 +854,6 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
       console.error(e);
     }
 
-    // Default template for this week
     const currentDefault = DEFAULT_AUGUST_REVIEWS[weekNumber] || {
       channelMetrics: {
         views: '58,300',
@@ -768,9 +864,7 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
         activeChannels: ['TikTok Ba Làng Tuyến Hòa', 'Fan Ba Làng TH'],
         note: '',
       },
-      userBulletPoints: `• Hoàn thành bám sát các đầu việc kịch bản, quay và dựng trong tuần cho cả 2 kênh TikTok.
-• Tương tác kênh duy trì ổn định và có sự cải thiện về chất lượng giữ chân người xem.
-• Phối hợp hỗ trợ các bộ phận liên quan chuẩn bị lịch phát sóng và livestream.`,
+      userBulletPoints: `• Hoàn thành bám sát các đầu việc kịch bản, quay và dựng trong tuần cho cả 2 kênh TikTok.\n• Tương tác kênh duy trì ổn định và có sự cải thiện về chất lượng giữ chân người xem.\n• Phối hợp hỗ trợ các bộ phận liên quan chuẩn bị lịch phát sóng và livestream.`,
       selfScore: 90,
       selfRating: 'Xuất sắc (A)',
     };
@@ -788,7 +882,6 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
     setPublishedAt(null);
   }, [weekKey, weekNumber]);
 
-  // Sync to server on load if exists
   useEffect(() => {
     const fetchServerReview = async () => {
       try {
@@ -820,13 +913,11 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
           }
         }
       } catch (err) {
-        // quiet fallback
       }
     };
     fetchServerReview();
   }, [weekKey]);
 
-  // Handle Score Change
   const handleScoreChange = (score: number) => {
     setSelfScore(score);
     if (score >= 95) setSelfRating('Xuất sắc (A+)');
@@ -836,7 +927,6 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
     else setSelfRating('Cần Cố Gắng (C)');
   };
 
-  // Toggle Channel Selection
   const toggleChannel = (channel: string) => {
     setMetrics((prev) => {
       const exists = prev.activeChannels.includes(channel);
@@ -860,28 +950,21 @@ export const WeeklySelfEvaluationCard: React.FC<WeeklySelfEvaluationCardProps> =
     setIsAddingChannel(false);
   };
 
-  // Auto populate key points from week tasks
   const handleAutoFillTasks = () => {
     const completedTasks = weekTasks.filter(
       (t) => t.status === 'completed' || (t.completionPercent || 0) >= 100
     );
     const topCompleted = completedTasks.slice(0, 5);
     const bullets = topCompleted.map((t) => `• Hoàn thành: ${t.title} (${t.timeSpentHours}h)`).join('\n');
-    const fullText = `• Khối lượng công việc tuần ${weekNumber}: Đã hoàn thành ${completedTasks.length}/${weekTasks.length} nhiệm vụ.
-${bullets}
-• Chỉ số kênh ghi nhận tăng trưởng tốt, tương tác cao ở các video kịch bản mới.
-• Cần khắc phục: Đẩy nhanh hơn nữa khâu duyệt kịch bản để tránh dồn ứ vào cuối tuần.
-• Kế hoạch tuần tới: Tập trung kịch bản trọng điểm và tối ưu chuyển đổi qua Livestream.`;
+    const fullText = `• Khối lượng công việc tuần ${weekNumber}: Đã hoàn thành ${completedTasks.length}/${weekTasks.length} nhiệm vụ.\n${bullets}\n• Chỉ số kênh ghi nhận tăng trưởng tốt, tương tác cao ở các video kịch bản mới.\n• Cần khắc phục: Đẩy nhanh hơn nữa khâu duyệt kịch bản để tránh dồn ứ vào cuối tuần.\n• Kế hoạch tuần tới: Tập trung kịch bản trọng điểm và tối ưu chuyển đổi qua Livestream.`;
 
     setUserBulletPoints(fullText);
   };
 
-  // Helper to switch metrics tab for specific channel
   const handleSwitchChannelMetricsTab = (targetCh: string) => {
     setActiveMetricsChannel(targetCh);
     const channelData = channelMetricsMap[targetCh] || DEFAULT_CHANNEL_METRICS_MAP[targetCh] || DEFAULT_CHANNEL_METRICS_MAP['TikTok Ba Làng Tuyến Hòa'];
 
-    // Sync current metrics state for backward compatibility
     setMetrics((prev) => ({
       ...prev,
       views: channelData.views,
@@ -903,7 +986,6 @@ ${bullets}
     }
   };
 
-  // Helper to update field in current active channel metric
   const handleUpdateCurrentChannelMetric = (field: keyof SingleChannelMetricsData, value: string) => {
     setChannelMetricsMap((prev) => {
       const currentCh = prev[activeMetricsChannel] || DEFAULT_CHANNEL_METRICS_MAP[activeMetricsChannel] || {
@@ -926,14 +1008,12 @@ ${bullets}
       return updatedMap;
     });
 
-    // Also update current metrics
     setMetrics((prev) => ({
       ...prev,
       [field === 'likes' ? 'engagement' : field]: value,
     }));
   };
 
-  // Helper to automatically sum up metrics from both channels
   const handleAutoCalculateTotalMetrics = () => {
     const c1 = channelMetricsMap['TikTok Ba Làng Tuyến Hòa'] || DEFAULT_CHANNEL_METRICS_MAP['TikTok Ba Làng Tuyến Hòa'];
     const c2 = channelMetricsMap['Fan Ba Làng TH'] || DEFAULT_CHANNEL_METRICS_MAP['Fan Ba Làng TH'];
@@ -982,7 +1062,6 @@ ${bullets}
     }
   };
 
-  // Khôi phục bộ thông số chuẩn 1 tuần cho cả 2 kênh và tổng hợp ALL
   const handleResetToWeeklyStandardMetrics = () => {
     setChannelMetricsMap(DEFAULT_CHANNEL_METRICS_MAP);
     try {
@@ -1020,10 +1099,9 @@ ${bullets}
     setTimeout(() => setSynthesizeNotice(null), 5000);
   };
 
-  // Select Preset Channel
   const handleSelectChannelPreset = (ch: string) => {
     setSelectedChannel(ch);
-    setActiveMetricsChannel(ch); // Cực kỳ quan trọng: đồng bộ tab thông số bên dưới!
+    setActiveMetricsChannel(ch);
     const url = getChannelDefaultUrl(ch);
     setChannelLinkInput(url);
 
@@ -1047,7 +1125,6 @@ ${bullets}
     }
   };
 
-  // Analyze TikTok Channel & Clips with AI
   const handleAnalyzeChannelClips = async () => {
     setIsAnalyzingClips(true);
     setAnalysisSuccess(false);
@@ -1088,7 +1165,6 @@ ${bullets}
       setAnalyzedClips(newClips);
       setChannelStrategicReview(newStrategy);
 
-      // Save to channel registry
       const scanRecord: ScannedChannelRecord = {
         channelName: selectedChannel,
         channelUrl: channelLinkInput,
@@ -1112,7 +1188,6 @@ ${bullets}
         localStorage.setItem(`weekly_channel_scans_${weekKey}`, JSON.stringify(updatedScans));
       } catch (e) {}
 
-      // Auto update channel growth metrics
       const calculatedReach = metrics.reach && metrics.reach !== 'Chưa cập nhật'
         ? metrics.reach
         : `${Math.round(parseInt((data.totalViews || '100000').replace(/,/g, '')) * 0.75).toLocaleString()} tài khoản`;
@@ -1153,7 +1228,6 @@ ${bullets}
       setAnalysisSuccess(true);
       setTimeout(() => setAnalysisSuccess(false), 5000);
 
-      // Auto-save to persistence
       saveReviewToStorage(aiReviewData, editableDoc, updatedMetrics, newClips, newStrategy);
     } catch (err) {
       console.error('Error analyzing TikTok channel clips:', err);
@@ -1162,148 +1236,6 @@ ${bullets}
     }
   };
 
-  // Helper tạo văn bản nhận xét hoàn chỉnh cho riêng 1 kênh
-  const generateSingleChannelReportDoc = (
-    channelName: string,
-    scanData: any,
-    metricsData: ChannelMetrics,
-    rating: string,
-    score: number,
-    weekNum: number,
-    start: string,
-    end: string
-  ): string => {
-    const isFanChannel = channelName.includes('Fan');
-    const views = scanData.totalViews || metricsData.views || (isFanChannel ? '19,800' : '38,500');
-    const likes = scanData.totalLikes || (isFanChannel ? '1,380' : '2,860');
-    const followers = scanData.totalFollowersGained || metricsData.followers || (isFanChannel ? '+140' : '+280');
-    const engagement = scanData.totalEngagement || metricsData.engagement || (isFanChannel ? '1,680' : '3,450');
-    const url = scanData.channelUrl || channelLinkInput || (isFanChannel ? 'https://www.tiktok.com/@fanbalangth' : 'https://www.tiktok.com/@balangtuyenhoa');
-
-    const hookTip = getHookTips(scanData.strategicReview)[0] || 'Tối ưu 1.5s đầu hình ảnh nước mắm sóng sánh hoặc biểu cảm bất ngờ';
-    const topicTip = getRecommendedTopics(scanData.strategicReview)[0] || 'Đẩy mạnh chuỗi series Bếp Mẹ Nấu & Giải đáp minh bạch thắc mắc khách hàng';
-    const facialTip = getFacialTips(scanData.strategicReview)[0] || 'Nhìn thẳng tâm ống kính camera 1:1, nụ cười mở đầu tự tin và rạng rỡ';
-    const editTip = getEditingTips(scanData.strategicReview)[0] || 'Nhịp cắt dồn dập dưới 1.5s/shot, zoom luân phiên 10-15%, âm thanh ASMR rót mắm';
-
-    const clipsList = scanData.clips && scanData.clips.length > 0
-      ? scanData.clips.slice(0, 4).map((c: any, i: number) =>
-          `  ${i + 1}. [Clip] ${c.title || 'Video Content Tuần'}\n     ↳ Views: ${c.views} | Tim: ${c.likes || c.likesCount || '---'} | Đánh giá: ${c.overallVerdict || 'Giữ chân người xem tốt'}`
-        ).join('\n')
-      : '  • Các video content định kỳ phát hành đúng tiến độ tuần, duy trì nhịp tương tác ổn định.';
-
-    return `BÁO CÁO TỰ ĐÁNH GIÁ CÔNG VIỆC TRONG TUẦN ${weekNum} (${start} - ${end})
-Người thực hiện: Trịnh Minh Đức | Kênh phụ trách: ${channelName}
-Xếp loại tự chấm: ${rating} (${score}/100)
-
-I. TỔNG QUAN TỰ ĐÁNH GIÁ:
-Trong tuần ${weekNum}, bản thân tôi đã tập trung cao độ triển khai toàn diện các hạng mục công việc được giao, bám sát mục tiêu nội dung và vận hành kênh ${channelName}. Tinh thần làm việc chủ động, trách nhiệm cao, bám sát các đầu việc từ lên ý tưởng, viết kịch bản đến quay và dựng hoàn thiện các video clip.
-
-II. BÁO CÁO & ĐO LƯỜNG CHỈ SỐ KÊNH (TĂNG TRƯỞNG TRONG TUẦN): ${channelName.toUpperCase()}
-- Kênh phụ trách: ${channelName}
-- Link kênh: ${url}
-- Tổng lượt xem phát sinh trong tuần (Views): ${views}
-- Tổng lượt Tim (Likes): ${likes}
-- Lượt Follow mới tăng trong tuần: ${followers}
-- Lượt tương tác (Engagement): ${engagement}
-- Độ phủ & Chuyển đổi: Tăng trưởng đều đặn, tỷ lệ giữ chân người xem cải thiện rõ nét nhờ áp dụng các hook mở màn mới.
-
-* BÓC TÁCH CHIẾN LƯỢC KÊNH ${channelName.toUpperCase()}:
-• Chiến lược Hook 3 giây đầu: ${hookTip}
-• Tuyến nội dung trọng tâm: ${topicTip}
-• Biểu cảm & Diễn xuất: ${facialTip}
-• Kỹ thuật Edit & Dựng video: ${editTip}
-
-* CÁC CLIP TIÊU BIỂU PHÁT HÀNH TRONG TUẦN:
-${clipsList}
-
-III. NHỮNG ĐIỂM SÁNG & ĐỘT PHÁ ĐẠT ĐƯỢC:
-+ Hoàn thành xuất sắc tiến độ sản xuất nội dung, đảm bảo lịch đăng tải định kỳ trên kênh ${channelName}.
-+ Đạt chỉ số tương tác tích cực với ${views} lượt xem và ${followers} follow mới trong tuần.
-+ Áp dụng thành công các hook hình ảnh và kỹ thuật dựng dồn dập giúp giữ chân người xem lâu hơn.
-
-IV. KHUYẾT ĐIỂM CẦN KHẮC PHỤC:
-- Cần rút ngắn thời gian phản hồi duyệt kịch bản giữa các khâu để chủ động lịch quay ngoại cảnh.
-- Tiếp tục tối ưu 2 giây đầu video để kéo giảm tỷ lệ lướt qua dưới 25%.
-
-V. CAM KẾT HÀNH ĐỘNG TUẦN TIẾP THEO:
--> Tiếp tục tối ưu kịch bản theo tuyến nội dung giữ chân cao nhất trên ${channelName}.
--> Đẩy mạnh video ngắn kết hợp kêu gọi hành động (CTA) hướng tới các phiên Livestream bán hàng.
--> Chủ động nâng cấp chất lượng âm thanh thu âm ngoài trời và ánh sáng bối cảnh.`;
-  };
-
-  // Helper tạo văn bản nhận xét tổng hợp CẢ 2 KÊNH TIKTOK
-  const generateSynthesizedChannelsReportDoc = (
-    c1Scan: any,
-    c2Scan: any,
-    metricsData: ChannelMetrics,
-    rating: string,
-    score: number,
-    weekNum: number,
-    start: string,
-    end: string
-  ): string => {
-    const c1Name = c1Scan.channelName || 'TikTok Ba Làng Tuyến Hòa';
-    const c2Name = c2Scan.channelName || 'Fan Ba Làng TH';
-
-    const parseNum = (val?: string) => {
-      if (!val) return 0;
-      return parseInt(String(val).replace(/[^\d]/g, ''), 10) || 0;
-    };
-
-    const c1Likes = c1Scan.totalLikes || '2,860';
-    const c2Likes = c2Scan.totalLikes || '1,380';
-    const totalLikesCalculated = (parseNum(c1Likes) + parseNum(c2Likes)).toLocaleString();
-
-    const totalViews = metricsData.views || '58,300';
-    const totalFollowers = metricsData.followers || '+420';
-    const totalEngagement = metricsData.engagement || '5,130';
-
-    const c1Views = c1Scan.totalViews || '38,500';
-    const c2Views = c2Scan.totalViews || '19,800';
-
-    return `BÁO CÁO TỰ ĐÁNH GIÁ CÔNG VIỆC TRONG TUẦN ${weekNum} (${start} - ${end})
-Người thực hiện: Trịnh Minh Đức | Kênh phụ trách: ${c1Name} & ${c2Name}
-Xếp loại tự chấm: ${rating} (${score}/100)
-
-I. TỔNG QUAN TỰ ĐÁNH GIÁ:
-Trong tuần ${weekNum}, bản thân tôi đã vận hành song song và phát triển nội dung cho cả 2 kênh TikTok trọng điểm của Ba Làng TH (${c1Name} và ${c2Name}). Toàn bộ khối lượng kịch bản, lịch quay và dựng hậu kỳ đều được hoàn thành đúng hạn với tinh thần trách nhiệm và cam kết chất lượng cao nhất.
-
-II. BÁO CÁO & PHÂN TÍCH TỔNG HỢP TĂNG TRƯỞNG TRONG TUẦN CẢ 2 KÊNH TIKTOK:
-1. TỔNG SỐ LIỆU TĂNG TRƯỞNG HỢP NHẤT TRONG TUẦN (7 NGÀY):
-- Tổng lượt xem (Views): ${totalViews}
-- Tổng lượt Tim (Likes): ${totalLikesCalculated} tim
-- Tổng Follow mới tăng trong tuần: ${totalFollowers}
-- Tổng tương tác: ${totalEngagement}
-
-2. CHI TIẾT TĂNG TRƯỞNG TỪNG KÊNH TRONG TUẦN:
-• KÊNH 1: ${c1Name.toUpperCase()}
-  - Lượt xem: ${c1Views} | Lượt Tim: ${c1Likes} | Link: ${c1Scan.channelUrl || 'https://www.tiktok.com/@balangtuyenhoa'}
-  - Trọng tâm nội dung: Ẩm thực gia đình "Bếp Mẹ Nấu", câu chuyện làng nghề mắm cá cơm truyền thống.
-  - Hook 3s: Visual Hook miếng thịt luộc bốc khói dầm mắm tỏi ớt đỏ au đạt tỷ lệ giữ chân người xem tốt nhất tuần.
-  - Kỹ thuật Edit: Nhịp cắt nhanh dưới 1.5s/shot, đẩy âm lượng ASMR rót mắm lên 120%.
-
-• KÊNH 2: ${c2Name.toUpperCase()}
-  - Lượt xem: ${c2Views} | Lượt Tim: ${c2Likes} | Link: ${c2Scan.channelUrl || 'https://www.tiktok.com/@fanbalangth'}
-  - Trọng tâm nội dung: Phỏng vấn đường phố (Street Interview) và quy trình đóng gói kiện hàng uy tín.
-  - Hook 3s: Đặt câu hỏi phỏng vấn giật tò mò ngay từ giây đầu tiên, reaction tươi tắn thân thiện.
-  - Kỹ thuật Edit: Highlight từ khóa địa danh Ba Làng màu vàng nổi bật, lọc gió âm thanh ngoài trời.
-
-III. NHỮNG ĐIỂM SÁNG & ĐỘT PHÁ ĐẠT ĐƯỢC:
-+ Đảm bảo đồng thời năng suất và chất lượng cho cả 2 kênh, đạt mốc ấn tượng ${totalViews} lượt xem toàn tuần.
-+ Phân hóa rõ nét phong cách nội dung giữa 2 kênh: một kênh đậm chất ẩm thực gia đình, một kênh chứng thực xã hội (Social Proof).
-+ Tối ưu tỷ lệ chuyển đổi, kích thích hàng trăm bình luận hỏi mua và đặt hàng mắm Ba Làng.
-
-IV. KHUYẾT ĐIỂM CẦN KHẮC PHỤC:
-- Cần tối ưu thời gian phối hợp duyệt kịch bản giữa các bộ phận để không bị dồn lịch quay cuối tuần.
-- Bổ sung mic lọc gió chuyên dụng (deadcat) khi quay phỏng vấn ngoài bờ biển Tĩnh Gia.
-
-V. CAM KẾT HÀNH ĐỘNG TUẦN TIẾP THEO:
--> Tiếp tục phát huy các tuyến video ngắn kết hợp kêu gọi hành động (CTA) đẩy traffic vào phiên Livestream bán hàng.
--> Lên kịch bản chi tiết theo phong cách diễn xuất mới của sếp và đội ngũ.
--> Phối hợp vận hành hạ tầng phòng Live và chuẩn bị kịch bản chương trình khuyến mãi.`;
-  };
-
-  // 1. Đưa Kênh Đang Chọn Vào Bảng Đánh Giá & Chỗ Nhận Xét Báo Cáo
   const handleApplySingleChannelToEvaluation = () => {
     const channelMetricData = channelMetricsMap[selectedChannel] || DEFAULT_CHANNEL_METRICS_MAP[selectedChannel] || DEFAULT_CHANNEL_METRICS_MAP['TikTok Ba Làng Tuyến Hòa'];
     const currentScan = channelScans[selectedChannel] || {
@@ -1339,16 +1271,10 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TIẾP THEO:
     const facialTip = getFacialTips(currentScan.strategicReview)[0] || 'Nhìn thẳng tâm camera 1:1, nụ cười rạng rỡ';
     const editTip = getEditingTips(currentScan.strategicReview)[0] || 'Nhịp cắt dồn dập dưới 1.5s/shot, zoom luân phiên';
 
-    const singleChannelBullet = `• ĐÁNH GIÁ KÊNH & CLIP (${selectedChannel}):
-  - Chỉ số: ${updatedMetrics.views} views | ${channelMetricData.likes || currentScan.totalLikes || (selectedChannel.includes('Fan') ? '1,380' : '2,860')} tim | ${updatedMetrics.followers} follow | ${updatedMetrics.engagement} tương tác.
-  - Hook 3s: ${hookTip}
-  - Chủ đề: ${topicTip}
-  - Biểu cảm: ${facialTip}
-  - Kỹ thuật Edit: ${editTip}`;
+    const singleChannelBullet = `• ĐÁNH GIÁ KÊNH & CLIP (${selectedChannel}):\n  - Chỉ số: ${updatedMetrics.views} views | ${channelMetricData.likes || currentScan.totalLikes || (selectedChannel.includes('Fan') ? '1,380' : '2,860')} tim | ${updatedMetrics.followers} follow | ${updatedMetrics.engagement} tương tác.\n  - Hook 3s: ${hookTip}\n  - Chủ đề: ${topicTip}\n  - Biểu cảm: ${facialTip}\n  - Kỹ thuật Edit: ${editTip}`;
 
     setUserBulletPoints((prev) => (prev ? `${prev}\n\n${singleChannelBullet}` : singleChannelBullet));
 
-    // Sinh bản báo cáo nhận xét chi tiết đưa thẳng sang Văn bản nhận xét
     const docWithChannel = generateSingleChannelReportDoc(
       selectedChannel,
       {
@@ -1389,7 +1315,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TIẾP THEO:
     setAiReviewData(updatedAiReview);
     setEditableDoc(docWithChannel);
 
-    // Chuyển sang tab Văn bản hoàn chỉnh để xem ngay
     setActiveTab('document');
 
     setSynthesizeNotice(`✓ Đã đưa báo cáo kênh "${selectedChannel}" sang bên chỗ Nhận Xét Báo Cáo!`);
@@ -1398,7 +1323,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TIẾP THEO:
     saveReviewToStorage(updatedAiReview, docWithChannel, updatedMetrics, currentScan.clips, currentScan.strategicReview);
   };
 
-  // 2. TỔNG HỢP BÁO CÁO CẢ 2 KÊNH VÀO ĐÁNH GIÁ & CHỖ NHẬN XÉT BÁO CÁO
   const handleSynthesizeBothChannels = () => {
     const c1Data = channelMetricsMap['TikTok Ba Làng Tuyến Hòa'] || DEFAULT_CHANNEL_METRICS_MAP['TikTok Ba Làng Tuyến Hòa'];
     const c2Data = channelMetricsMap['Fan Ba Làng TH'] || DEFAULT_CHANNEL_METRICS_MAP['Fan Ba Làng TH'];
@@ -1474,7 +1398,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TIẾP THEO:
     setAiReviewData(combinedAiReview);
     setEditableDoc(docCombined);
 
-    // Chuyển sang tab Văn bản hoàn chỉnh để xem ngay
     setActiveTab('document');
 
     setSynthesizeNotice(`🎉 Đã tổng hợp thành công báo cáo cả 2 kênh sang bên chỗ Nhận Xét Báo Cáo!`);
@@ -1489,14 +1412,9 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TIẾP THEO:
     );
   };
 
-  // Apply Strategy into User Bullet Points
   const handleApplyStrategyToBullets = () => {
     if (!channelStrategicReview && analyzedClips.length === 0) return;
-    const bulletToAdd = `• Đánh giá Kênh & Clip (${selectedChannel}):
-  - Hook 3s: Cần đưa visual hook (giọt mắm sóng sánh/thịt luộc) lên 1.5s đầu; rút gọn câu thoại mở đầu dưới 2.5s.
-  - Chủ đề: Tiếp tục tuyến "Bếp Mẹ Nấu" và "Giải đáp độ mặn tự nhiên", tránh bài nói thuần kỹ thuật.
-  - Biểu cảm: Cười tươi hơn ở 2s đầu, nhìn thẳng tâm camera tạo kết nối 1:1, giọng nhấn mạnh từ khóa đậm đà.
-  - Kỹ thuật Edit: Cắt tỉa dead air dồn dập dưới 1.5s/shot, zoom luân phiên 10-15%, tăng độ ấm màu mắm hổ phách.`;
+    const bulletToAdd = `• Đánh giá Kênh & Clip (${selectedChannel}):\n  - Hook 3s: Cần đưa visual hook (giọt mắm sóng sánh/thịt luộc) lên 1.5s đầu; rút gọn câu thoại mở đầu dưới 2.5s.\n  - Chủ đề: Tiếp tục tuyến "Bếp Mẹ Nấu" và "Giải đáp độ mặn tự nhiên", tránh bài nói thuần kỹ thuật.\n  - Biểu cảm: Cười tươi hơn ở 2s đầu, nhìn thẳng tâm camera tạo kết nối 1:1, giọng nhấn mạnh từ khóa đậm đà.\n  - Kỹ thuật Edit: Cắt tỉa dead air dồn dập dưới 1.5s/shot, zoom luân phiên 10-15%, tăng độ ấm màu mắm hổ phách.`;
 
     setUserBulletPoints((prev) => (prev ? `${prev}\n${bulletToAdd}` : bulletToAdd));
     setAppliedStrategyNotice(true);
@@ -1509,7 +1427,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TIẾP THEO:
     setTimeout(() => setCopiedHookIdx(null), 2000);
   };
 
-  // Generate with AI
   const handleGenerateAIReview = async () => {
     setIsGenerating(true);
     try {
@@ -1550,11 +1467,9 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TIẾP THEO:
       setAiReviewData(reviewObj);
       setEditableDoc(data.formattedDocument || '');
 
-      // Save locally
       saveReviewToStorage(reviewObj, data.formattedDocument);
     } catch (err: any) {
       console.error('Error generating self-review:', err);
-      // Fallback generation
       const fallbackDoc = `BÁO CÁO TỰ ĐÁNH GIÁ CÔNG VIỆC TRONG TUẦN ${weekNumber} (${startDate} - ${endDate})
 Người thực hiện: Trịnh Minh Đức | Kênh phụ trách: ${metrics.activeChannels.join(', ')}
 Xếp loại tự chấm: ${selfRating} (${selfScore}/100)
@@ -1612,7 +1527,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
     }
   };
 
-  // Helper to persist review locally & to backend
   const saveReviewToStorage = async (
     aiRev: any,
     docText?: string,
@@ -1668,7 +1582,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
       setIsSaved(true);
       setTimeout(() => setIsSaved(false), 3000);
 
-      // Push to backend
       await fetch('/api/shared/self-reviews', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1679,11 +1592,9 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
     }
   };
 
-  // 3. XUẤT BÁO CÁO CHO NGƯỜI XEM (Viewer Mode)
   const handlePublishReportForViewers = async () => {
     let docContent = editableDoc || aiReviewData?.formattedDocument;
     
-    // Nếu chưa có văn bản thì tự động sinh từ dữ liệu hiện tại
     if (!docContent || docContent.trim().length === 0) {
       docContent = generateSingleChannelReportDoc(
         selectedChannel,
@@ -1741,7 +1652,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
     setIsViewerModalOpen(true);
   };
 
-  // 4. HỦY XUẤT BẢN CHO NGƯỜI XEM (Chuyển về bản nội bộ Admin)
   const handleUnpublishReport = async () => {
     setIsPublishedForViewers(false);
     setPublishedAt(null);
@@ -1758,7 +1668,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
     setTimeout(() => setPublishSuccessNotice(null), 3000);
   };
 
-  // 5. TẢI FILE BÁO CÁO DẠNG VĂN BẢN (.txt)
   const handleDownloadTxtReport = () => {
     const content = (!isAdmin ? currentViewerDoc : (editableDoc || aiReviewData?.formattedDocument)) || '';
     if (!content) return;
@@ -1773,7 +1682,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
     URL.revokeObjectURL(url);
   };
 
-  // 6. IN BÁO CÁO / XUẤT PDF
   const handlePrintReport = () => {
     window.print();
   };
@@ -1793,11 +1701,9 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
       glowColor="purple"
       className="p-6 md:p-8 bg-gradient-to-b from-slate-900 via-slate-900/95 to-slate-950 border border-purple-500/30 shadow-2xl relative overflow-hidden my-8 rounded-3xl"
     >
-      {/* Background ambient lighting */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none -ml-20 -mb-20" />
 
-      {/* Header Banner */}
       <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-800">
         <div className="flex items-start gap-4">
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500/20 to-cyan-500/20 border border-purple-500/30 flex items-center justify-center shadow-lg shadow-purple-500/10 flex-shrink-0 mt-0.5">
@@ -1821,7 +1727,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
           </div>
         </div>
 
-        {/* Self Score & Grade Badge */}
         <div className="flex items-center gap-3 self-start md:self-auto bg-slate-800/80 border border-slate-700/80 px-4 py-2.5 rounded-2xl">
           <Award className="w-5 h-5 text-amber-400" />
           <div>
@@ -1838,14 +1743,10 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
         </div>
       </div>
 
-      {/* Main Grid: Inputs vs Output */}
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
-        {/* Left Column (5 Cols): Inputs (Admin) OR Profile & Proposals (Viewer) */}
         <div className="lg:col-span-5 space-y-5">
           {!isAdmin ? (
-            /* ================= VIEWER MODE: PROFILE & KEY PROPOSALS (HOÀN TOÀN KHÔNG CÓ PHÂN TÍCH KÊNH) ================= */
             <div className="space-y-4">
-              {/* Personnel Profile Card */}
               <div className="p-5 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800/80 to-slate-900 border border-purple-500/30 shadow-xl space-y-3">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 to-cyan-500 p-0.5 flex-shrink-0 shadow-lg shadow-purple-500/20">
@@ -1879,17 +1780,16 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                   <div className="flex items-center justify-between text-slate-400">
                     <span>Chế độ báo cáo:</span>
                     <span className="text-emerald-400 font-semibold flex items-center gap-1">
-                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      <CheckCircle className="w-3.5 h-3.5" />
                       Nhận xét & đề xuất tuần của bản thân
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Personal Bullet Points */}
               <div className="p-4 rounded-2xl bg-slate-800/40 border border-slate-800 space-y-2.5">
                 <div className="flex items-center gap-2 text-xs font-bold text-slate-200">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <CheckCircle className="w-4 h-4 text-emerald-400" />
                   <span>Ý Chính Tự Vạch Ra & Đánh Giá Nỗ Lực</span>
                 </div>
                 <div className="p-3 bg-slate-900/80 rounded-xl border border-slate-800/80 text-xs text-slate-300 whitespace-pre-line leading-relaxed">
@@ -1897,7 +1797,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                 </div>
               </div>
 
-              {/* Key Proposals Card */}
               <div className="p-4 rounded-2xl bg-gradient-to-br from-indigo-950/30 via-slate-900 to-slate-900 border border-indigo-500/30 space-y-3">
                 <div className="flex items-center gap-2 text-xs font-bold text-indigo-300">
                   <Sparkles className="w-4 h-4 text-amber-400" />
@@ -1919,7 +1818,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                 </div>
               </div>
 
-              {/* Quick Actions for Viewer */}
               <div className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800 flex flex-col gap-2">
                 <button
                   type="button"
@@ -1950,9 +1848,7 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
               </div>
             </div>
           ) : (
-            /* ================= ADMIN MODE: FULL CONTROLS & EDITORS ================= */
             <>
-          {/* Channel Selector Chips */}
           <div className="p-4 rounded-2xl bg-slate-800/40 border border-slate-800">
             <div className="flex items-center justify-between mb-2.5">
               <label className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
@@ -1969,7 +1865,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
               </button>
             </div>
 
-            {/* Quick Chips */}
             <div className="flex flex-wrap gap-1.5 mb-2">
               {POPULAR_CHANNELS.map((ch) => {
                 const isSelected = metrics.activeChannels.includes(ch);
@@ -1991,7 +1886,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
               })}
             </div>
 
-            {/* Add Custom Channel Input */}
             {isAddingChannel && (
               <div className="flex items-center gap-1.5 mt-2 pt-2 border-t border-slate-700/50">
                 <input
@@ -2020,7 +1914,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
             )}
           </div>
 
-          {/* Ném Link Kênh TikTok & Quét Clip Bằng AI (Admin Only) */}
           {isAdmin ? (
             <div className="p-4 rounded-2xl bg-gradient-to-br from-purple-950/40 via-slate-900 to-slate-900 border border-purple-500/40 space-y-3 relative overflow-hidden shadow-lg shadow-purple-950/30">
               <div className="flex items-center justify-between">
@@ -2043,7 +1936,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                 </div>
               </div>
 
-              {/* Quick 2 TikTok Channels Selector with Scan Status */}
               <div className="flex items-center gap-1.5 p-1 bg-slate-950/80 rounded-xl border border-slate-800 text-xs">
                 <button
                   type="button"
@@ -2079,7 +1971,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                 </button>
               </div>
 
-              {/* Channel Link Input Field */}
               <div className="space-y-1">
                 <div className="flex items-center justify-between text-[11px] text-slate-300">
                   <span className="flex items-center gap-1 font-medium">
@@ -2119,7 +2010,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                 </div>
               </div>
 
-              {/* Optional Clip Links input */}
               <div className="space-y-1">
                 <div className="flex items-center justify-between text-[11px] text-slate-300">
                   <span className="flex items-center gap-1 font-medium">
@@ -2137,7 +2027,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                 />
               </div>
 
-              {/* CTA Trigger Button */}
               <div className="pt-1">
                 <button
                   type="button"
@@ -2159,14 +2048,12 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                 </button>
               </div>
 
-              {/* ACTION BUTTONS: Apply to Evaluation Table (Single or Aggregate 2 Channels) */}
               <div className="pt-2 border-t border-slate-800 space-y-2">
                 <span className="text-[11px] font-bold text-slate-300 block">
                   🎯 Đưa Kết Quả Sang Bảng Đánh Giá:
                 </span>
                 
                 <div className="grid grid-cols-1 gap-2">
-                  {/* Option A: Single Channel */}
                   <button
                     type="button"
                     onClick={handleApplySingleChannelToEvaluation}
@@ -2180,7 +2067,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                     <span className="text-[10px] text-slate-400 font-normal">Chỉ kênh này</span>
                   </button>
 
-                  {/* Option B: AGGREGATE BOTH CHANNELS (User Request) */}
                   <button
                     type="button"
                     onClick={handleSynthesizeBothChannels}
@@ -2198,17 +2084,16 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                 </div>
               </div>
 
-              {/* Status Notice / Alerts */}
               {publishSuccessNotice && (
                 <div className="p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/50 text-xs text-emerald-200 flex items-start gap-2 shadow-inner">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
                   <div className="flex-1 font-medium">{publishSuccessNotice}</div>
                 </div>
               )}
 
               {synthesizeNotice && (
                 <div className="p-3 rounded-xl bg-purple-500/20 border border-purple-500/50 text-xs text-purple-200 flex items-start gap-2 shadow-inner">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
                   <div className="flex-1 font-medium">{synthesizeNotice}</div>
                 </div>
               )}
@@ -2216,7 +2101,7 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
               {analysisSuccess && (
                 <div className="p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-[11px] text-emerald-300 flex items-center justify-between">
                   <span className="flex items-center gap-1.5 font-semibold">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                    <CheckCircle className="w-4 h-4 text-emerald-400" />
                     Đã phân tích {analyzedClips.length} clip & cập nhật chỉ số!
                   </span>
                   <button
@@ -2230,7 +2115,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
               )}
             </div>
           ) : (
-            /* VIEWER MODE: Channel Analysis Hidden with Clear Status */
             <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-2.5">
               <div className="flex items-center gap-2 text-slate-300">
                 <Shield className="w-4 h-4 text-purple-400" />
@@ -2254,9 +2138,7 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
             </div>
           )}
 
-          {/* 4 Core Channel Metrics Inputs - Multi-channel tabs */}
           <div className="p-4 rounded-2xl bg-slate-800/40 border border-slate-800 space-y-3.5">
-            {/* Header with channel indicator */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-1 border-b border-slate-700/60">
               <div className="flex items-center gap-1.5">
                 <TrendingUp className="w-4 h-4 text-emerald-400" />
@@ -2276,7 +2158,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
               </span>
             </div>
 
-            {/* Channel Switcher Tabs */}
             <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-950/80 rounded-xl border border-slate-800 text-xs">
               <button
                 type="button"
@@ -2324,7 +2205,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
               </button>
             </div>
 
-            {/* Active Channel Details Bar & Action Controls */}
             <div className="flex flex-wrap items-center justify-between gap-2 px-2.5 py-1.5 rounded-lg bg-slate-900/70 border border-slate-800 text-[11px]">
               <div className="text-slate-300 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -2355,7 +2235,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              {/* Views */}
               <div className="space-y-1">
                 <span className="text-[11px] font-medium text-slate-300 flex items-center gap-1">
                   <Eye className="w-3.5 h-3.5 text-cyan-400" />
@@ -2370,7 +2249,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                 />
               </div>
 
-              {/* Followers with quick chips */}
               <div className="space-y-1">
                 <span className="text-[11px] font-medium text-slate-300 flex items-center gap-1">
                   <Users className="w-3.5 h-3.5 text-purple-400" />
@@ -2383,7 +2261,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                   placeholder={activeMetricsChannel === 'Fan Ba Làng TH' ? 'Vd: +140' : (activeMetricsChannel === 'ALL' ? 'Vd: +420' : 'Vd: +280')}
                   className="w-full px-3 py-2 bg-slate-900/90 border border-slate-700/80 rounded-xl text-xs font-mono font-bold text-purple-300 focus:outline-none focus:border-purple-500 transition-colors"
                 />
-                {/* Quick Select Chips */}
                 <div className="flex items-center gap-1 pt-0.5 flex-wrap">
                   <span className="text-[9px] text-slate-400">Chọn nhanh:</span>
                   {(activeMetricsChannel === 'Fan Ba Làng TH'
@@ -2408,7 +2285,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                 </div>
               </div>
 
-              {/* Reach */}
               <div className="space-y-1">
                 <span className="text-[11px] font-medium text-slate-300 flex items-center gap-1">
                   <Radio className="w-3.5 h-3.5 text-emerald-400" />
@@ -2423,7 +2299,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                 />
               </div>
 
-              {/* Engagement */}
               <div className="space-y-1">
                 <span className="text-[11px] font-medium text-slate-300 flex items-center gap-1">
                   <Heart className="w-3.5 h-3.5 text-rose-400" />
@@ -2439,7 +2314,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
               </div>
             </div>
 
-            {/* Additional note / conversion */}
             <div className="pt-1">
               <span className="text-[11px] font-medium text-slate-300 block mb-1">
                 Ghi chú thêm về chiến dịch / Chuyển đổi ({activeMetricsChannel === 'ALL' ? 'Toàn bộ 2 kênh' : activeMetricsChannel})
@@ -2457,7 +2331,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
               />
             </div>
 
-            {/* Quick comparison between the 2 channels */}
             <div className="p-2.5 rounded-xl bg-slate-950/70 border border-slate-800/80 text-[10px] space-y-1.5">
               <div className="text-slate-400 font-semibold flex items-center justify-between">
                 <span>Đối sánh tăng trưởng 2 kênh TikTok trong 1 tuần (7 ngày):</span>
@@ -2516,7 +2389,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
             </div>
           </div>
 
-          {/* User Bullet Points Area */}
           <div className="p-4 rounded-2xl bg-slate-800/40 border border-slate-800 space-y-2.5">
             <div className="flex items-center justify-between">
               <label className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
@@ -2546,7 +2418,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
             </p>
           </div>
 
-          {/* Self-Rating Slider / Input */}
           <div className="p-4 rounded-2xl bg-slate-800/40 border border-slate-800 flex items-center justify-between gap-4">
             <div className="space-y-0.5">
               <span className="text-xs font-bold text-slate-200 block">Tự Chấm Điểm Bản Thân</span>
@@ -2567,7 +2438,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
             </div>
           </div>
 
-          {/* Action Trigger Button */}
           <div className="pt-1">
             <button
               type="button"
@@ -2592,10 +2462,8 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
       )}
     </div>
 
-        {/* Right Column (7 Cols): AI Generated Review Display & Document */}
         <div className="lg:col-span-7 flex flex-col justify-between space-y-4">
           <div className="p-5 rounded-2xl bg-slate-800/50 border border-slate-700/80 flex-1 flex flex-col">
-            {/* Review Card Header with Tabs & Actions */}
             <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-700/80">
               <div className="flex items-center gap-2">
                 <FileText className="w-5 h-5 text-purple-400" />
@@ -2605,7 +2473,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
               </div>
 
               <div className="flex items-center gap-2">
-                {/* Switch Tabs */}
                 <div className="flex rounded-xl bg-slate-900/80 p-1 border border-slate-700/80">
                   <button
                     type="button"
@@ -2650,7 +2517,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                   )}
                 </div>
 
-                {/* Edit Toggle (Admin Only) */}
                 {isAdmin && activeTab === 'document' && (
                   <button
                     type="button"
@@ -2662,11 +2528,10 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                     }`}
                     title={isEditingDoc ? 'Hoàn tất chỉnh sửa' : 'Chỉnh sửa văn bản trực tiếp'}
                   >
-                    <Edit3 className="w-4 h-4" />
+                    <Edit className="w-4 h-4" />
                   </button>
                 )}
 
-                {/* View / Preview Viewer Version Button */}
                 <button
                   type="button"
                   onClick={() => setIsViewerModalOpen(true)}
@@ -2677,7 +2542,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                   <span className="hidden sm:inline">Bản Người Xem</span>
                 </button>
 
-                {/* Publish to Viewers Button (Admin Only) */}
                 {isAdmin && (
                   <button
                     type="button"
@@ -2690,7 +2554,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                   </button>
                 )}
 
-                {/* Copy Button */}
                 <button
                   type="button"
                   onClick={handleCopyDocument}
@@ -2712,11 +2575,9 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
               </div>
             </div>
 
-            {/* Review Content */}
             <div className="py-4 flex-1">
               {activeTab === 'tiktok' ? (
                 <div className="space-y-4 max-h-[540px] overflow-y-auto pr-2 custom-scrollbar">
-                  {/* Top Stats Banner */}
                   <div className="p-4 rounded-2xl bg-gradient-to-br from-pink-950/30 via-slate-900 to-purple-950/30 border border-pink-500/30">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-800">
                       <div>
@@ -2732,7 +2593,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                       </div>
 
                       <div className="flex flex-wrap items-center gap-2">
-                        {/* Button 1: Đưa Báo Cáo Kênh Này Sang Nhận Xét */}
                         <button
                           type="button"
                           onClick={handleApplySingleChannelToEvaluation}
@@ -2743,7 +2603,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                           <span>📋 Đưa Báo Cáo Kênh Sang Nhận Xét</span>
                         </button>
 
-                        {/* Button 2: Đưa vào ý chính */}
                         <button
                           type="button"
                           onClick={handleApplyStrategyToBullets}
@@ -2765,7 +2624,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                       </div>
                     </div>
 
-                    {/* 4 Core Metrics Chips */}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-3">
                       <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
                         <div className="text-[10px] text-slate-400 flex items-center gap-1">
@@ -2806,7 +2664,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                     </div>
                   </div>
 
-                  {/* Sub-tab Navigation */}
                   <div className="flex items-center gap-2 p-1 bg-slate-900/90 rounded-xl border border-slate-800">
                     <button
                       type="button"
@@ -2834,7 +2691,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                     </button>
                   </div>
 
-                  {/* If no data yet */}
                   {!channelStrategicReview && analyzedClips.length === 0 ? (
                     <div className="p-8 text-center rounded-2xl border border-dashed border-slate-800 bg-slate-900/40">
                       <Video className="w-10 h-10 text-pink-400 mx-auto mb-2 opacity-80" />
@@ -2853,9 +2709,7 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                       </button>
                     </div>
                   ) : analysisSubTab === 'strategy' && channelStrategicReview ? (
-                    /* STRATEGY SUBTAB: 4 PILLARS */
                     <div className="space-y-3.5">
-                      {/* Pillar 1: Hook Strategy */}
                       <div className="p-4 rounded-2xl bg-gradient-to-br from-amber-500/10 via-slate-900 to-slate-900 border border-amber-500/30 space-y-2.5">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
@@ -2886,7 +2740,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                           ))}
                         </div>
 
-                        {/* Sample Hooks */}
                         {getSampleHooks(channelStrategicReview).length > 0 && (
                           <div className="pt-2 border-t border-amber-500/20 space-y-1.5">
                             <span className="text-[11px] font-bold text-amber-300 flex items-center gap-1">
@@ -2926,7 +2779,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                         )}
                       </div>
 
-                      {/* Pillar 2: Topic Strategy */}
                       <div className="p-4 rounded-2xl bg-gradient-to-br from-cyan-500/10 via-slate-900 to-slate-900 border border-cyan-500/30 space-y-2.5">
                         <div className="flex items-center gap-2">
                           <span className="w-6 h-6 rounded-lg bg-cyan-400/20 text-cyan-300 flex items-center justify-center text-xs font-black">
@@ -2943,7 +2795,7 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
                           <div className="p-2.5 rounded-xl bg-slate-950/80 border border-emerald-500/30 space-y-1">
                             <span className="text-[11px] font-bold text-emerald-300 flex items-center gap-1">
-                              <CheckCircle2 className="w-3 h-3" />
+                              <CheckCircle className="w-3 h-3" />
                               Tuyến nội dung nên đẩy mạnh:
                             </span>
                             {getRecommendedTopics(channelStrategicReview).map((r, rIdx) => (
@@ -2968,7 +2820,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                         </div>
                       </div>
 
-                      {/* Pillar 3: Expression Strategy */}
                       <div className="p-4 rounded-2xl bg-gradient-to-br from-purple-500/10 via-slate-900 to-slate-900 border border-purple-500/30 space-y-2.5">
                         <div className="flex items-center gap-2">
                           <span className="w-6 h-6 rounded-lg bg-purple-400/20 text-purple-300 flex items-center justify-center text-xs font-black">
@@ -3010,7 +2861,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                         </div>
                       </div>
 
-                      {/* Pillar 4: Editing Strategy */}
                       <div className="p-4 rounded-2xl bg-gradient-to-br from-emerald-500/10 via-slate-900 to-slate-900 border border-emerald-500/30 space-y-2.5">
                         <div className="flex items-center gap-2">
                           <span className="w-6 h-6 rounded-lg bg-emerald-400/20 text-emerald-300 flex items-center justify-center text-xs font-black">
@@ -3053,7 +2903,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                       </div>
                     </div>
                   ) : (
-                    /* CLIPS SUBTAB: DETAILED CLIP-BY-CLIP */
                     <div className="space-y-3">
                       {analyzedClips.map((clip, cIdx) => {
                         const isExpanded = expandedClipId === clip.id || analyzedClips.length <= 3;
@@ -3124,7 +2973,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                               </div>
                             </div>
 
-                            {/* Row 4 Metrics of this clip */}
                             <div className="grid grid-cols-4 gap-2 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 text-[11px]">
                               <div>
                                 <span className="text-[10px] text-slate-400 block">Views</span>
@@ -3144,10 +2992,8 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                               </div>
                             </div>
 
-                            {/* Detailed Breakdown Accordion Content */}
                             {isExpanded && (
                               <div className="space-y-2 pt-2 border-t border-slate-800/80 text-xs">
-                                {/* Hook Evaluation */}
                                 <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/25 space-y-1">
                                   <div className="flex items-center justify-between text-[11px] font-bold text-amber-300">
                                     <span className="flex items-center gap-1">
@@ -3179,9 +3025,7 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                                   )}
                                 </div>
 
-                                {/* Expression & Editing Grid */}
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
-                                  {/* Expression */}
                                   <div className="p-2.5 rounded-xl bg-purple-500/10 border border-purple-500/25 space-y-1">
                                     <span className="font-bold text-purple-300 flex items-center gap-1">
                                       <Smile className="w-3 h-3 text-pink-400" />
@@ -3195,7 +3039,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                                     </div>
                                   </div>
 
-                                  {/* Editing */}
                                   <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/25 space-y-1">
                                     <span className="font-bold text-emerald-300 flex items-center gap-1">
                                       <Scissors className="w-3 h-3" />
@@ -3210,7 +3053,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                                   </div>
                                 </div>
 
-                                {/* Verdict */}
                                 <div className="p-2 rounded-xl bg-slate-950/70 border border-slate-800 text-[11px] text-slate-300">
                                   <strong className="text-white">Tổng kết: </strong>
                                   {getClipOverallVerdict(clip)}
@@ -3245,14 +3087,13 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                 </div>
               ) : activeTab === 'document' ? (
                 <div className="space-y-3">
-                  {/* Status Banner for Viewers */}
                   {isPublishedForViewers ? (
                     <div className="p-3 rounded-xl bg-gradient-to-r from-emerald-950/50 via-slate-900 to-teal-950/50 border border-emerald-500/40 flex flex-wrap items-center justify-between gap-2.5">
                       <div className="flex items-center gap-2">
                         <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
                         <div>
                           <div className="text-xs font-bold text-emerald-300 flex items-center gap-1.5">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                            <CheckCircle className="w-4 h-4 text-emerald-400" />
                             <span>Bản Báo Cáo Chính Thức Đã Xuất Bản Cho Người Xem</span>
                           </div>
                           <span className="text-[10px] text-slate-400 block">
@@ -3318,9 +3159,7 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                   )}
                 </div>
               ) : !isAdmin ? (
-                /* Breakdown 4 View Blocks for Viewer (HOÀN TOÀN KHÔNG CÓ PHẦN PHÂN TÍCH KÊNH) */
                 <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
-                  {/* Block 1: Overall */}
                   <div className="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/30">
                     <div className="flex items-center gap-1.5 text-xs font-bold text-purple-300 mb-1.5 uppercase tracking-wider">
                       <FileText className="w-4 h-4" />
@@ -3331,10 +3170,9 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                     </p>
                   </div>
 
-                  {/* Block 2: Strengths */}
                   <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
                     <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-300 mb-1.5 uppercase tracking-wider">
-                      <CheckCircle2 className="w-4 h-4" />
+                      <CheckCircle className="w-4 h-4" />
                       <span>II. Điểm Sáng & Kết Quả Đạt Được Của Bản Thân</span>
                     </div>
                     <ul className="space-y-1.5 text-xs text-slate-200">
@@ -3354,7 +3192,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                     </ul>
                   </div>
 
-                  {/* Block 3 & 4: Bottlenecks & Next Action Plan */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30">
                       <div className="flex items-center gap-1.5 text-xs font-bold text-amber-300 mb-1.5 uppercase tracking-wider">
@@ -3401,9 +3238,7 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                   </div>
                 </div>
               ) : (
-                /* Breakdown 5 View Blocks for Admin */
                 <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
-                  {/* Block 1: Overall */}
                   <div className="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/30">
                     <div className="flex items-center gap-1.5 text-xs font-bold text-purple-300 mb-1.5 uppercase tracking-wider">
                       <FileText className="w-4 h-4" />
@@ -3414,7 +3249,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                     </p>
                   </div>
 
-                  {/* Block 2: Channel Performance */}
                   <div className="p-3.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30">
                     <div className="flex items-center gap-1.5 text-xs font-bold text-cyan-300 mb-1.5 uppercase tracking-wider">
                       <TrendingUp className="w-4 h-4" />
@@ -3425,10 +3259,9 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                     </p>
                   </div>
 
-                  {/* Block 3: Strengths */}
                   <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
                     <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-300 mb-1.5 uppercase tracking-wider">
-                      <CheckCircle2 className="w-4 h-4" />
+                      <CheckCircle className="w-4 h-4" />
                       <span>III. Điểm Sáng & Đột Phá Đạt Được</span>
                     </div>
                     <ul className="space-y-1 text-xs text-slate-200">
@@ -3441,7 +3274,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                     </ul>
                   </div>
 
-                  {/* Block 4: Next Goals & Bottlenecks */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30">
                       <div className="flex items-center gap-1.5 text-xs font-bold text-amber-300 mb-1.5 uppercase tracking-wider">
@@ -3477,7 +3309,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
               )}
             </div>
 
-            {/* Bottom Footer Actions */}
             <div className="pt-3 border-t border-slate-700/80 flex flex-wrap items-center justify-between gap-3">
               <div className="text-[11px] text-slate-400 flex items-center gap-1.5">
                 <Award className="w-3.5 h-3.5 text-amber-400" />
@@ -3490,7 +3321,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
 
               <div className="flex flex-wrap items-center gap-2">
                 {!isAdmin ? (
-                  /* Viewer bottom actions */
                   <>
                     <button
                       type="button"
@@ -3531,7 +3361,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                     </button>
                   </>
                 ) : (
-                  /* Admin bottom actions */
                   <>
                     {isPublishedForViewers && (
                       <button
@@ -3601,13 +3430,9 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
         </div>
       </div>
 
-      {/* ========================================================================= */}
-      {/* MODAL: BẢN BÁO CÁO DÀNH CHO NGƯỜI XEM (Official Viewer Report Version)     */}
-      {/* ========================================================================= */}
       {isViewerModalOpen && (
         <div className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
           <div className="relative w-full max-w-4xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[92vh]">
-            {/* Modal Header */}
             <div className="p-5 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-b border-slate-700/80 flex items-start justify-between gap-4">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
@@ -3616,7 +3441,7 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                   </span>
                   {isPublishedForViewers ? (
                     <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center gap-1">
-                      <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                      <CheckCircle className="w-3 h-3 text-emerald-400" />
                       Đã Xuất Bản Cho Người Xem
                     </span>
                   ) : (
@@ -3645,7 +3470,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                 </div>
               </div>
 
-              {/* Close Button */}
               <button
                 type="button"
                 onClick={() => setIsViewerModalOpen(false)}
@@ -3656,9 +3480,7 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
               </button>
             </div>
 
-            {/* Modal Body */}
             <div className="p-5 space-y-4 overflow-y-auto custom-scrollbar flex-1">
-              {/* Quick Metrics Bar: Only shown for admin, completely hidden for viewers */}
               {isAdmin && (
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   <div className="p-3 rounded-xl bg-slate-950/70 border border-cyan-500/30">
@@ -3700,13 +3522,11 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                 </div>
               )}
 
-              {/* Formatted Report Document: Pure personal review and proposals for viewer */}
               <div className="p-5 sm:p-6 bg-slate-950 rounded-xl border border-slate-800 font-sans text-xs sm:text-sm text-slate-100 leading-relaxed whitespace-pre-line select-text max-h-[500px] overflow-y-auto custom-scrollbar shadow-inner">
                 {!isAdmin ? currentViewerDoc : (editableDoc || aiReviewData?.formattedDocument || 'Chưa có nội dung văn bản báo cáo.')}
               </div>
             </div>
 
-            {/* Modal Footer Actions */}
             <div className="p-4 bg-slate-900/90 border-t border-slate-700/80 flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-2">
                 {isAdmin && isPublishedForViewers && (
@@ -3732,7 +3552,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
               </div>
 
               <div className="flex flex-wrap items-center gap-2">
-                {/* Copy */}
                 <button
                   type="button"
                   onClick={handleCopyDocument}
@@ -3751,7 +3570,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                   )}
                 </button>
 
-                {/* Download .txt */}
                 <button
                   type="button"
                   onClick={handleDownloadTxtReport}
@@ -3762,7 +3580,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                   <span>Tải File .txt</span>
                 </button>
 
-                {/* Print / PDF */}
                 <button
                   type="button"
                   onClick={handlePrintReport}
@@ -3773,7 +3590,6 @@ V. CAM KẾT HÀNH ĐỘNG TUẦN TỚI:
                   <span>In / PDF</span>
                 </button>
 
-                {/* Close */}
                 <button
                   type="button"
                   onClick={() => setIsViewerModalOpen(false)}
