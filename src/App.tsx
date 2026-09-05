@@ -18,6 +18,39 @@ import { subscribeToCloudData, saveCloudData } from './services/firestoreService
 import { computeDailyReportForTasks } from './services/reportSyncService';
 import { filterRealFeedbacks, isMockFeedback } from './utils/feedbackFilter';
 
+// LÁ CHẮN LỖI (ERROR BOUNDARY) - Ngăn màn hình bị tối thui khi một trang bị lỗi
+class ErrorBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean, error: Error | null}> {
+  constructor(props: {children: React.ReactNode}) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+  componentDidCatch(error: Error, info: React.ErrorInfo) {
+    console.error("Giao diện bị lỗi ngầm:", error, info);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="p-6 mt-8 bg-rose-950/50 border border-rose-500/50 rounded-xl text-rose-100 z-50 relative max-w-2xl mx-auto shadow-2xl">
+          <h2 className="text-xl font-bold mb-2 flex items-center gap-2">
+            <span>⚠️</span> Đã xảy ra lỗi hiển thị ở trang này!
+          </h2>
+          <p className="text-sm opacity-80 mb-4">Một phần dữ liệu gây lỗi khiến trang không thể tải. Thay vì tối thui màn hình, hệ thống đã chặn lỗi này. Dưới đây là mã lỗi chi tiết:</p>
+          <pre className="p-4 bg-rose-950/80 rounded border border-rose-800 text-xs overflow-auto font-mono text-rose-300">
+            {this.state.error?.toString()}
+          </pre>
+          <button onClick={() => window.location.reload()} className="mt-6 px-5 py-2.5 bg-rose-600 rounded-lg font-medium hover:bg-rose-500 transition-colors shadow-lg shadow-rose-900/20">
+            Tải lại trang
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 export default function App() {
   const [activeTab, setActiveTab] = useState<ViewTab>('daily');
   const [selectedDate, setSelectedDate] = useState<string>(() => formatDateStr(new Date()));
@@ -122,7 +155,7 @@ export default function App() {
     return INITIAL_DAILY_REPORTS;
   });
 
-  // Viewer Feedbacks State - Chỉ lưu trữ và hiển thị đánh giá THẬT từ người dùng đã tạo tài khoản
+  // Viewer Feedbacks State
   const [feedbacks, setFeedbacks] = useState<ViewerFeedback[]>(() => {
     const saved = localStorage.getItem('3d_workreport_feedbacks');
     if (saved) {
@@ -181,7 +214,6 @@ export default function App() {
             }))
           );
         } else {
-          // If server is empty, seed initial data to server so all visitors can see!
           fetch('/api/shared/data', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -202,14 +234,13 @@ export default function App() {
       .catch(console.warn);
   }, []);
 
-  // Synchronize with Google Firebase Firestore in Real Time (Indestructible across Vercel deployments)
+  // Synchronize with Google Firebase Firestore in Real Time
   useEffect(() => {
     const unsubscribe = subscribeToCloudData(
       (cloudData) => {
         if (cloudData.tasks && Array.isArray(cloudData.tasks) && cloudData.tasks.length > 0) {
           setTasks(cloudData.tasks);
         } else {
-          // If Firestore is empty, seed it with current initial tasks and reports!
           saveCloudData(tasks, dailyReports, filterRealFeedbacks(feedbacks)).catch(console.warn);
         }
 
@@ -231,7 +262,7 @@ export default function App() {
     return () => unsubscribe();
   }, []);
 
-  // Near real-time server polling synchronization: Admin edits are instantly reflected on all viewer devices
+  // Near real-time server polling synchronization
   useEffect(() => {
     let isCancelled = false;
 
@@ -242,7 +273,6 @@ export default function App() {
         const data = await res.json();
         if (isCancelled) return;
 
-        // If current user is viewer, always keep synced with admin's latest saved data
         if (currentUser?.role !== 'admin') {
           if (data.tasks && Array.isArray(data.tasks)) {
             setTasks(data.tasks.map((t: TaskItem) => ({ ...t, category: normalizeCategory(t.category) })));
@@ -252,7 +282,6 @@ export default function App() {
           }
         }
 
-        // Keep feedbacks clean and synchronized for all users
         if (data.feedbacks && Array.isArray(data.feedbacks)) {
           const clean = filterRealFeedbacks(data.feedbacks);
           setFeedbacks(clean);
@@ -283,17 +312,13 @@ export default function App() {
     }, 3500);
   };
 
-  // Helper to sync to both Google Firebase Cloud Firestore and server API
   const persistAllData = (
     nextTasks: TaskItem[],
     nextReports: DailyReport[],
     nextFeedbacks: ViewerFeedback[]
   ) => {
-    // 1. Google Firebase Cloud Firestore (Real-time and persistent across deployments)
     saveCloudData(nextTasks, nextReports, nextFeedbacks).catch(console.warn);
-    // 2. Server API sync (fallback)
     syncServerData(nextTasks, nextReports);
-    // 3. Local storage instant update
     try {
       localStorage.setItem('3d_workreport_tasks', JSON.stringify(nextTasks));
       localStorage.setItem('3d_workreport_daily_reports', JSON.stringify(nextReports));
@@ -303,7 +328,6 @@ export default function App() {
     }
   };
 
-  // Helper to sync tasks and reports to server
   const syncServerData = (updatedTasks: TaskItem[], updatedReports: DailyReport[]) => {
     fetch('/api/shared/data', {
       method: 'POST',
@@ -319,7 +343,6 @@ export default function App() {
   const [isSheetModalOpen, setIsSheetModalOpen] = useState(false);
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
 
-  // Current Day Tasks and Report (guaranteed sync between tasks and daily reports)
   const currentDayTasks = tasks.filter((t) => t.date === selectedDate);
   const currentDayReport =
     dailyReports.find((r) => r.date === selectedDate) ||
@@ -327,7 +350,6 @@ export default function App() {
       ? computeDailyReportForTasks(selectedDate, tasks, dailyReports, currentUser?.name || 'Trịnh Minh Đức')[0]
       : null);
 
-  // Task Operations - Automatically updates DailyReport metrics, highlights & syncs to Cloud
   const handleSaveTask = (task: TaskItem) => {
     if (currentUser?.role !== 'admin') return;
     const exists = tasks.some((t) => t.id === task.id);
@@ -438,7 +460,6 @@ export default function App() {
     showSyncSuccessToast('✓ Đã lưu thay đổi báo cáo & tự động đồng bộ!');
   };
 
-  // Feedback Operations - Chỉ chấp nhận đánh giá thật từ người dùng đã tạo tài khoản
   const handleAddFeedback = async (newFb: Omit<ViewerFeedback, 'id' | 'createdAt'>) => {
     if (!currentUser) return;
     if (isMockFeedback(newFb)) return;
@@ -540,16 +561,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 relative font-sans selection:bg-cyan-500/30 selection:text-cyan-200">
-      {/* 3D WebGL Three.js Ambient Particle & Crystal Scene */}
       <ThreeCanvasBackground />
 
-      {/* When logged out: Show Dedicated Auth Portal (Login & Register) */}
       {!currentUser ? (
         <AuthScreen onLogin={setCurrentUser} />
       ) : (
-        /* Main Foreground Content when Logged In */
         <div className="relative z-10 flex flex-col min-h-screen">
-          {/* Sticky Header */}
           <Navbar
             activeTab={activeTab}
             onTabChange={setActiveTab}
@@ -559,98 +576,98 @@ export default function App() {
             onLogout={handleLogout}
           />
 
-          {/* Dynamic Viewport */}
           <main className="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-6 md:py-8">
-            {activeTab === 'daily' && (
-              <DailyReportView
-                selectedDate={selectedDate}
-                onDateChange={setSelectedDate}
-                report={currentDayReport}
-                tasks={currentDayTasks}
-                currentUser={currentUser}
-                onOpenTaskModal={handleOpenTaskModalForEdit}
-                onOpenSheetModal={() => setIsSheetModalOpen(true)}
-                onSaveReport={handleSaveDailyReport}
-                onToggleTaskStatus={handleToggleTaskStatus}
-                onDeleteTask={handleDeleteTask}
-                feedbacks={feedbacks}
-                onAddFeedback={handleAddFeedback}
-                onDeleteFeedback={handleDeleteFeedback}
-                onOpenLoginModal={() => setIsLoginOpen(true)}
-                onClearMockFeedbacks={handleClearMockFeedbacks}
-              />
-            )}
+            <ErrorBoundary>
+              {activeTab === 'daily' && (
+                <DailyReportView
+                  selectedDate={selectedDate}
+                  onDateChange={setSelectedDate}
+                  report={currentDayReport}
+                  tasks={currentDayTasks}
+                  currentUser={currentUser}
+                  onOpenTaskModal={handleOpenTaskModalForEdit}
+                  onOpenSheetModal={() => setIsSheetModalOpen(true)}
+                  onSaveReport={handleSaveDailyReport}
+                  onToggleTaskStatus={handleToggleTaskStatus}
+                  onDeleteTask={handleDeleteTask}
+                  feedbacks={feedbacks}
+                  onAddFeedback={handleAddFeedback}
+                  onDeleteFeedback={handleDeleteFeedback}
+                  onOpenLoginModal={() => setIsLoginOpen(true)}
+                  onClearMockFeedbacks={handleClearMockFeedbacks}
+                />
+              )}
 
-            {activeTab === 'weekly' && (
-              <WeeklyReportView
-                selectedDate={selectedDate}
-                onDateChange={setSelectedDate}
-                dailyReports={dailyReports}
-                allTasks={tasks}
-                currentUser={currentUser}
-                onSelectDailyReport={handleSelectDailyReportFromWeekly}
-                feedbacks={feedbacks}
-                onAddFeedback={handleAddFeedback}
-                onDeleteFeedback={handleDeleteFeedback}
-                onOpenLoginModal={() => setIsLoginOpen(true)}
-                onClearMockFeedbacks={handleClearMockFeedbacks}
-              />
-            )}
+              {activeTab === 'weekly' && (
+                <WeeklyReportView
+                  selectedDate={selectedDate}
+                  onDateChange={setSelectedDate}
+                  dailyReports={dailyReports || []}
+                  allTasks={tasks || []}
+                  currentUser={currentUser}
+                  onSelectDailyReport={handleSelectDailyReportFromWeekly}
+                  feedbacks={feedbacks}
+                  onAddFeedback={handleAddFeedback}
+                  onDeleteFeedback={handleDeleteFeedback}
+                  onOpenLoginModal={() => setIsLoginOpen(true)}
+                  onClearMockFeedbacks={handleClearMockFeedbacks}
+                />
+              )}
 
-            {activeTab === 'monthly' && (
-              <MonthlyReportView
-                selectedDate={selectedDate}
-                allTasks={tasks}
-                dailyReports={dailyReports}
-                currentUser={currentUser}
-                feedbacks={feedbacks}
-                onAddFeedback={handleAddFeedback}
-                onDeleteFeedback={handleDeleteFeedback}
-                onOpenLoginModal={() => setIsLoginOpen(true)}
-                onClearMockFeedbacks={handleClearMockFeedbacks}
-              />
-            )}
+              {activeTab === 'monthly' && (
+                <MonthlyReportView
+                  selectedDate={selectedDate}
+                  allTasks={tasks || []}
+                  dailyReports={dailyReports || []}
+                  currentUser={currentUser}
+                  feedbacks={feedbacks}
+                  onAddFeedback={handleAddFeedback}
+                  onDeleteFeedback={handleDeleteFeedback}
+                  onOpenLoginModal={() => setIsLoginOpen(true)}
+                  onClearMockFeedbacks={handleClearMockFeedbacks}
+                />
+              )}
 
-            {activeTab === 'quarterly' && (
-              <QuarterlyReportView
-                selectedDate={selectedDate}
-                allTasks={tasks}
-                dailyReports={dailyReports}
-                currentUser={currentUser}
-                feedbacks={feedbacks}
-                onAddFeedback={handleAddFeedback}
-                onDeleteFeedback={handleDeleteFeedback}
-                onOpenLoginModal={() => setIsLoginOpen(true)}
-                onClearMockFeedbacks={handleClearMockFeedbacks}
-              />
-            )}
+              {activeTab === 'quarterly' && (
+                <QuarterlyReportView
+                  selectedDate={selectedDate}
+                  allTasks={tasks || []}
+                  dailyReports={dailyReports || []}
+                  currentUser={currentUser}
+                  feedbacks={feedbacks}
+                  onAddFeedback={handleAddFeedback}
+                  onDeleteFeedback={handleDeleteFeedback}
+                  onOpenLoginModal={() => setIsLoginOpen(true)}
+                  onClearMockFeedbacks={handleClearMockFeedbacks}
+                />
+              )}
 
-            {activeTab === 'yearly' && (
-              <YearlyReportView
-                selectedDate={selectedDate}
-                allTasks={tasks}
-                dailyReports={dailyReports}
-                currentUser={currentUser}
-                feedbacks={feedbacks}
-                onAddFeedback={handleAddFeedback}
-                onDeleteFeedback={handleDeleteFeedback}
-                onOpenLoginModal={() => setIsLoginOpen(true)}
-                onClearMockFeedbacks={handleClearMockFeedbacks}
-              />
-            )}
+              {activeTab === 'yearly' && (
+                <YearlyReportView
+                  selectedDate={selectedDate}
+                  allTasks={tasks || []}
+                  dailyReports={dailyReports || []}
+                  currentUser={currentUser}
+                  feedbacks={feedbacks}
+                  onAddFeedback={handleAddFeedback}
+                  onDeleteFeedback={handleDeleteFeedback}
+                  onOpenLoginModal={() => setIsLoginOpen(true)}
+                  onClearMockFeedbacks={handleClearMockFeedbacks}
+                />
+              )}
 
-            {activeTab === 'sheet' && (
-              <MasterSheetView
-                allTasks={tasks}
-                dailyReports={dailyReports}
-                currentUser={currentUser}
-                onUpdateTasks={handleUpdateTasksFromSheet}
-                onUpdateDailyReports={handleUpdateDailyReportsFromSheet}
-              />
-            )}
+              {activeTab === 'sheet' && (
+                <MasterSheetView
+                  allTasks={tasks || []}
+                  dailyReports={dailyReports || []}
+                  currentUser={currentUser}
+                  onUpdateTasks={handleUpdateTasksFromSheet}
+                  onUpdateDailyReports={handleUpdateDailyReportsFromSheet}
+                />
+              )}
+            </ErrorBoundary>
           </main>
 
-          {/* 3D Cyber Footer */}
           <footer className="mt-auto border-t border-slate-800/80 bg-slate-950/80 backdrop-blur-xl py-6 px-4 text-center text-xs text-slate-500">
             <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
               <div className="flex items-center gap-2">
@@ -743,4 +760,3 @@ export default function App() {
     </div>
   );
 }
-
