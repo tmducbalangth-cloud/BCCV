@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   Calendar,
-  BarChart3,
+  BarChart, // Đã sửa từ BarChart3 để chống crash
   TrendingUp,
   Sparkles,
   Award,
@@ -10,7 +10,7 @@ import {
   Layers,
   ChevronLeft,
   ChevronRight,
-  CheckCircle2,
+  CheckCircle, // Đã sửa từ CheckCircle2 để chống crash
   AlertCircle,
   Zap,
   ArrowUpRight,
@@ -52,7 +52,6 @@ function getWeekNumber(d: Date): [number, number] {
 function getWeekDates(currentDate: Date): { dayName: string; dateStr: string; dateObj: Date }[] {
   const curr = new Date(currentDate);
   const day = curr.getDay();
-  // Distance to Monday (1)
   const diffToMonday = curr.getDate() - day + (day === 0 ? -6 : 1);
   const monday = new Date(curr.setDate(diffToMonday));
 
@@ -74,8 +73,8 @@ function getWeekDates(currentDate: Date): { dayName: string; dateStr: string; da
 export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
   selectedDate,
   onDateChange,
-  dailyReports,
-  allTasks,
+  dailyReports = [],
+  allTasks = [],
   currentUser,
   onSelectDailyReport,
   feedbacks = [],
@@ -93,35 +92,42 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
   const startDateStr = weekDays[0].dateStr;
   const endDateStr = weekDays[6].dateStr;
 
-  // Filter tasks in this week
   const weekDatesSet = new Set(weekDays.map((d) => d.dateStr));
   const weekTasks = allTasks.filter((t) => weekDatesSet.has(t.date));
 
-  // Compute Weekly Aggregated Metrics
   const totalTasks = weekTasks.length;
-  const completedTasks = weekTasks.filter((t) => t.status === 'completed' || t.completionPercent >= 100).length;
+  const completedTasks = weekTasks.filter((t) => t.status === 'completed' || (t.completionPercent || 0) >= 100).length;
   const totalLoggedHours = weekTasks.reduce((sum, t) => sum + (Number(t.timeSpentHours) || 0), 0);
   const completionRate = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
 
-  // Tính chuẩn giờ làm việc tuần: 8h/ngày, làm Thứ 2 -> Thứ 7, nghỉ mỗi Chủ Nhật
-  const workingDaysInWeek = weekDays.filter((wd) => {
-    const d = new Date(wd.dateStr);
-    return d.getDay() !== 0; // Exclude Sunday
-  }).length;
-  const standardWeekHours = workingDaysInWeek * STANDARD_DAILY_HOURS; // Ví dụ 6 ngày x 8h = 48h
+  const workingDaysInWeek = weekDays.filter((wd) => wd.dateObj.getDay() !== 0).length;
+  const standardWeekHours = workingDaysInWeek * (STANDARD_DAILY_HOURS || 8);
   const actualWeekHours = totalLoggedHours > 0 ? Math.max(standardWeekHours, totalLoggedHours) : standardWeekHours;
   const totalHours = actualWeekHours;
 
-  // Day-by-Day statistics
   const dayStats = weekDays.map((wd) => {
     const dayTasksList = weekTasks.filter((t) => t.date === wd.dateStr);
     const dayReport = dailyReports.find((r) => r.date === wd.dateStr);
-    const completed = dayTasksList.filter((t) => t.status === 'completed' || t.completionPercent >= 100).length;
+    const completed = dayTasksList.filter((t) => t.status === 'completed' || (t.completionPercent || 0) >= 100).length;
     const loggedHours = dayTasksList.reduce((s, t) => s + (Number(t.timeSpentHours) || 0), 0);
     const score = dayReport?.productivityScore || (dayTasksList.length > 0 ? Math.min(100, Math.round((completed / dayTasksList.length) * 60 + 35)) : 0);
     
-    // Tính toán chuẩn theo ngày (Chủ Nhật nghỉ, Thứ 2-7 chuẩn 8h)
-    const dayWork = calculateDayWorkHours(wd.dateStr, loggedHours > 0 ? loggedHours : undefined);
+    // Lớp bảo vệ chống sập khi hàm tính giờ bị lỗi ngầm
+    let dayWork;
+    try {
+      dayWork = calculateDayWorkHours(wd.dateStr, loggedHours > 0 ? loggedHours : undefined);
+    } catch (error) {
+      console.warn('Fallback tính giờ:', error);
+    }
+    
+    if (!dayWork) {
+      dayWork = {
+        actualHours: loggedHours,
+        standardHours: wd.dateObj.getDay() === 0 ? 0 : 8,
+        isSunday: wd.dateObj.getDay() === 0,
+        statusText: ''
+      };
+    }
 
     return {
       day: wd.dayName,
@@ -129,19 +135,18 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
       score,
       completedCount: completed,
       totalCount: dayTasksList.length,
-      hours: dayWork.actualHours,
-      standardHours: dayWork.standardHours,
-      isSunday: dayWork.isSunday,
-      statusText: dayWork.statusText,
+      hours: dayWork.actualHours || 0,
+      standardHours: dayWork.standardHours || 0,
+      isSunday: dayWork.isSunday || false,
+      statusText: dayWork.statusText || '',
     };
   });
 
   const activeDays = dayStats.filter((d) => d.totalCount > 0);
   const avgScore = activeDays.length > 0
-    ? Math.round(activeDays.reduce((s, d) => s + d.score, 0) / activeDays.length)
+    ? Math.round(activeDays.reduce((s, d) => s + (d.score || 0), 0) / activeDays.length)
     : 88;
 
-  // August 2026 week details resolver from Google Sheet data
   const augWeekInfo = React.useMemo(() => {
     const isW1 = (weekNumber === 32 || (startDateStr >= '2026-08-01' && startDateStr <= '2026-08-09'));
     const isW2 = (weekNumber === 33 || (startDateStr >= '2026-08-10' && startDateStr <= '2026-08-16'));
@@ -226,7 +231,6 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
     return null;
   }, [weekNumber, startDateStr, completedTasks, totalTasks, totalHours]);
 
-  // Category Breakdown
   const categoryMap: { [key: string]: { count: number; hours: number } } = {};
   weekTasks.forEach((t) => {
     const cat = t.category || 'Khác';
@@ -242,7 +246,6 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
     percentage: totalHours > 0 ? Math.round((val.hours / totalHours) * 100) : 0,
   }));
 
-  // Week Navigator Actions
   const changeWeek = (direction: number) => {
     const d = new Date(selectedDate);
     d.setDate(d.getDate() + direction * 7);
@@ -264,13 +267,7 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
           startDate: startDateStr,
           endDate: endDateStr,
           dailyReports: dailyReports.filter((r) => weekDatesSet.has(r.date)),
-          stats: {
-            totalTasks,
-            completedTasks,
-            totalHours,
-            avgScore,
-            completionRate,
-          },
+          stats: { totalTasks, completedTasks, totalHours, avgScore, completionRate },
         }),
       });
 
@@ -299,7 +296,6 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
       });
     } catch (err: any) {
       console.error(err);
-      // Fallback
       setWeeklyReportState({
         id: `weekly_${year}_w${weekNumber}`,
         weekNumber,
@@ -337,19 +333,14 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
 
   return (
     <div className="space-y-6 animate-fadeIn">
-      {/* Top Controls: Week/Date/Month/Year Picker & Actions */}
       <div className="relative z-30 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 p-4 rounded-3xl bg-slate-900/80 border border-slate-800/80 backdrop-blur-xl shadow-2xl">
-        {/* Date / Month / Year & Week Navigator */}
         <div className="flex flex-wrap items-center gap-3">
-          {/* Direct Date Picker */}
           <DatePickerPopover
             id="weekly-date-picker"
             value={selectedDate}
             onChange={onDateChange}
             label="Chọn Ngày:"
           />
-
-          {/* Week Info Badge & Stepper */}
           <div className="flex items-center gap-1 bg-slate-800/60 p-1 rounded-2xl border border-slate-700/80">
             <button
               id="prev-week-btn"
@@ -376,8 +367,6 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
-
-          {/* Quick Select August 2026 Weeks from Google Sheet */}
           <div className="flex items-center gap-1.5 flex-wrap">
             <span className="text-[11px] font-bold text-slate-400 hidden sm:inline">Xem nhanh BC T8:</span>
             <button
@@ -426,8 +415,6 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
             </button>
           </div>
         </div>
-
-        {/* Action Buttons: Self Evaluation Anchor & AI Synthesis */}
         <div className="flex flex-wrap items-center gap-2">
           <a
             href="#weekly-self-evaluation-section"
@@ -436,7 +423,6 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
             <Sparkles className="w-4 h-4 text-amber-300" />
             <span>Tự Đánh Giá Tuần (AI)</span>
           </a>
-
           <button
             id="synthesize-weekly-btn"
             onClick={handleSynthesizeWeeklyReport}
@@ -453,7 +439,6 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
         </div>
       </div>
 
-      {/* Work Schedule Standard Indicator */}
       <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-2.5 rounded-2xl bg-emerald-950/25 border border-emerald-500/25 text-xs text-emerald-300">
         <div className="flex items-center gap-2">
           <Clock className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -466,11 +451,10 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
           <span>•</span>
           <span>Nghỉ tuần: <strong className="text-amber-400">1 ngày (Chủ Nhật)</strong></span>
           <span>•</span>
-          <span>Định mức giờ tuần: <strong className="text-emerald-300">{standardWeekHours}h</strong></span>
+          <span>Định mức giờ tuần: <strong className="text-emerald-300">{standardWeekHours || 0}h</strong></span>
         </div>
       </div>
 
-      {/* 3D Primary Metric Cards for the Week */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <MetricCard3D
           id="metric-weekly-score"
@@ -483,7 +467,6 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
           trend="+12%"
           trendUp={true}
         />
-
         <MetricCard3D
           id="metric-weekly-tasks"
           title="Tổng Công Việc Tuần"
@@ -493,19 +476,17 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
           colorScheme="cyan"
           progress={completionRate}
         />
-
         <MetricCard3D
           id="metric-weekly-hours"
           title="Tổng Giờ Làm Việc"
-          value={`${actualWeekHours}h`}
-          subValue={`Chuẩn ${standardWeekHours}h (${workingDaysInWeek} ngày x 8h, nghỉ CN)`}
+          value={`${actualWeekHours || 0}h`}
+          subValue={`Chuẩn ${standardWeekHours || 0}h (${workingDaysInWeek} ngày x 8h, nghỉ CN)`}
           icon={Clock}
           colorScheme="emerald"
           progress={100}
           trend="100% định mức"
           trendUp={true}
         />
-
         <MetricCard3D
           id="metric-weekly-delivery"
           title="Chỉ Số Hoàn Tất KPI"
@@ -517,18 +498,16 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
         />
       </div>
 
-      {/* 3D Day-by-Day Aggregation & Trend Grid */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <h3 className="text-base font-bold text-white tracking-tight font-display flex items-center gap-2">
-            <BarChart3 className="w-5 h-5 text-cyan-400" />
+            <BarChart className="w-5 h-5 text-cyan-400" />
             <span>Thống Kê Đo Lường & Tiến Độ 7 Ngày Trong Tuần</span>
           </h3>
           <span className="text-xs text-slate-400">
             Click vào ngày bất kỳ để xem chi tiết báo cáo ngày
           </span>
         </div>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-3">
           {dayStats.map((ds) => {
             const isCurrentSelected = ds.date === selectedDate;
@@ -541,7 +520,7 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
                 id={`weekly-day-card-${ds.date}`}
                 onClick={() => onSelectDailyReport(ds.date)}
                 maxTilt={12}
-                glowColor={isCurrentSelected ? 'cyan' : hasTasks ? 'emerald' : 'default'}
+                glowColor={isCurrentSelected ? 'cyan' : hasTasks ? 'emerald' : undefined}
                 className={`p-4 cursor-pointer transition-all ${
                   isCurrentSelected
                     ? 'border-cyan-400 bg-cyan-950/30 shadow-[0_0_20px_rgba(6,182,212,0.3)]'
@@ -554,13 +533,12 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
                   <span className="text-xs font-bold text-white font-display">{ds.day}</span>
                   <span className="text-[10px] text-slate-400">{ds.date.slice(5)}</span>
                 </div>
-
                 <div className="my-2">
                   <div className="text-xl font-extrabold text-cyan-300 font-display">
                     {ds.isSunday && !hasTasks ? (
                       <span className="text-amber-400 text-sm font-bold">Nghỉ tuần</span>
                     ) : hasTasks ? (
-                      `${ds.score} đ`
+                      `${ds.score || 0} đ`
                     ) : (
                       '8.0h'
                     )}
@@ -573,7 +551,6 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
                     )}
                   </div>
                 </div>
-
                 {hasTasks && (
                   <div className="mt-3">
                     <div className="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
@@ -590,9 +567,7 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
         </div>
       </div>
 
-      {/* 3D Redesigned Weekly Report Card & Executive Insights */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left 2 Cols: AI Redesigned Weekly Report */}
         <TiltCard
           id="weekly-executive-card"
           glowColor="purple"
@@ -617,7 +592,6 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
             </span>
           </div>
 
-          {/* Executive Summary */}
           <div className="p-4 rounded-2xl bg-slate-950/70 border border-slate-800 mb-6">
             <p className="text-xs font-bold uppercase tracking-wider text-purple-300 mb-1 flex items-center gap-1.5">
               <Zap className="w-4 h-4" />
@@ -626,11 +600,10 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
             <p className="text-sm text-slate-200 leading-relaxed font-medium">
               {weeklyReportState?.aiExecutiveSummary ||
                 augWeekInfo?.summary ||
-                `Báo cáo Tuần ${weekNumber} (${startDateStr} - ${endDateStr}): Đội ngũ đã thực hiện xuất sắc ${totalTasks} công việc với tổng thời gian ${totalHours}h. Năng suất duy trì đều đặn suốt tuần với điểm trung bình ${avgScore}/100. Các hạng mục kỹ thuật 3D, bóc tách bảng tính và đo lường AI đều đạt chuẩn.`}
+                `Báo cáo Tuần ${weekNumber} (${startDateStr} - ${endDateStr}): Đội ngũ đã thực hiện xuất sắc ${totalTasks} công việc với tổng thời gian ${totalHours || 0}h. Năng suất duy trì đều đặn suốt tuần với điểm trung bình ${avgScore}/100. Các hạng mục kỹ thuật 3D, bóc tách bảng tính và đo lường AI đều đạt chuẩn.`}
             </p>
           </div>
 
-          {/* 4 Concrete Measurement Indicators */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
             <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800 text-center">
               <span className="text-[10px] uppercase font-bold text-slate-400 block">Tỷ Lệ Bàn Giao</span>
@@ -658,11 +631,10 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
             </div>
           </div>
 
-          {/* Achievements & Next Goals */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="p-4 rounded-2xl bg-emerald-500/5 border border-emerald-500/20">
               <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2">
-                <CheckCircle2 className="w-4 h-4" />
+                <CheckCircle className="w-4 h-4" />
                 <span>Thành Tựu Cốt Lõi</span>
               </div>
               <ul className="space-y-1.5 text-xs text-slate-300">
@@ -678,7 +650,6 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
                 ))}
               </ul>
             </div>
-
             <div className="p-4 rounded-2xl bg-cyan-500/5 border border-cyan-500/20">
               <div className="flex items-center gap-1.5 text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2">
                 <TrendingUp className="w-4 h-4" />
@@ -700,7 +671,6 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
           </div>
         </TiltCard>
 
-        {/* Right 1 Col: Category Distribution & Time Share */}
         <TiltCard
           id="weekly-category-breakdown"
           glowColor="cyan"
@@ -718,7 +688,6 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
                 </p>
               </div>
             </div>
-
             {categoryBreakdown.length === 0 ? (
               <p className="text-xs text-slate-500 text-center py-8">
                 Chưa có dữ liệu danh mục tuần này
@@ -755,19 +724,17 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
               </div>
             )}
           </div>
-
           <div className="pt-4 mt-4 border-t border-slate-800 text-center">
             <span className="text-[11px] text-slate-400 block">
               Tổng số giờ cống hiến trong tuần:
             </span>
             <span className="text-2xl font-black text-cyan-400 font-display">
-              {totalHours} Giờ
+              {totalHours || 0} Giờ
             </span>
           </div>
         </TiltCard>
       </div>
 
-      {/* Tự Bản Thân Đánh Giá Công Việc Trong Tuần & Phân Tích Kênh (Trợ Lý AI) */}
       <WeeklySelfEvaluationCard
         weekNumber={weekNumber}
         year={year}
@@ -777,7 +744,6 @@ export const WeeklyReportView: React.FC<WeeklyReportViewProps> = ({
         currentUser={currentUser}
       />
 
-      {/* Viewer Evaluation & Feedback Section for Weekly Report */}
       <ViewerEvaluationSection
         scope="weekly"
         targetId={`weekly_${weekNumber}_${year}`}
